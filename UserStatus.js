@@ -1,22 +1,19 @@
 view UserStatus {
-  let count = 0
   let login = () =>
     ref.authWithOAuthPopup("facebook", (error, authData) => {
       if (error) {
         console.log("Login failed", error)
-      } else {
-        console.log("Hopefully the view has updated.")
       }
+    }, {
+      scope: "public_profile,email,user_friends"
     })
 
-  on('update', () => {
-    console.log(Flint.getCache[view.getPath()], view.props)
-  })
+  let logout = () =>
+    ref.unauth()
 
-  <button onClick={() => count++}>up {count}</button>
   <loggedIn if={^user}>
-    You are logged in as:
-    <userInfo>{JSON.stringify(^user)}</userInfo>
+    Hi <User user={^user} />
+    <logout-a href="#" onClick={logout}>Log out</logout-a>
   </loggedIn>
 
   <notLoggedIn if={!^user}>
@@ -24,6 +21,10 @@ view UserStatus {
   </notLoggedIn>
 
   $userInfo = {
-    fontFamily: 'courier new'
+    fontWeight: 'bold'
+  }
+
+  $logout = {
+    paddingLeft: 4
   }
 }

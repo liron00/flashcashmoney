@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 const bigArray = []
 const hack = `
   for (let i = 0; i < 10000; i++) {

@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "FlashCashMoney": {
+      "applicationId": "f972z3mrGZGGdtfIatNtVYRA3fHjO7GM14ekZMbk"
+    },
+    "_default": {
+      "link": "FlashCashMoney"
+    }
+  }
+}

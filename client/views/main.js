@@ -1,8 +1,10 @@
+import jQ from 'jquery'
 import Firebase from 'firebase'
+
+export const jQuery = jQ
 
 const firebaseName = 'flashcashmoney'
 export const ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
-
 
 view Main {
   /*

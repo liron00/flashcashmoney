@@ -11,14 +11,9 @@ view Flash {
   
   <User user={user} />
   <Timestamp timestamp={moment(^flash.timestamp).fromNow()} />
-  <cash>
-    Amount: ${^flash.amount}
-  </cash>
+  <Cash amount={^flash.amount} />
 
   $ = {
     marginBottom: 20
-  }
-  $cash = {
-    flexFlow: 'row'
   }
 }

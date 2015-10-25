@@ -10,7 +10,7 @@ view Flash {
   })
   
   <User user={user} />
-  <Timestamp timestamp={moment(^flash.timestamp).fromNow()} />
+  <Timestamp timestamp={new Date(^flash.timestamp)} />
   <Cash amount={^flash.amount} />
 
   $ = {

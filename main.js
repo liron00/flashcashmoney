@@ -1,6 +1,7 @@
 import Firebase from 'firebase'
 
 const firebaseName = 'flashcashmoney'
+
 export const ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
 
 view Main {
@@ -61,16 +62,5 @@ view Main {
 
   $userObject = {
     fontFamily: 'courier new'
-  }
-}
-
-view Flash {
-  <h2>User <i>{^flash.userId}</i></h2>
-  <cash>
-    ${^flash.amount}
-  </cash>
-
-  $cash = {
-    flexFlow: 'row'
   }
 }

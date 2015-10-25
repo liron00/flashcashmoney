@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 view Flash {
   let user = {uid: ^flash.uid}
   let userRef = ref.child('users').child(user.uid)
@@ -8,7 +10,7 @@ view Flash {
   })
   
   <User user={user} />
-  <Timestamp timestamp={new Date(^flash.timestamp)} />
+  <Timestamp timestamp={moment(^flash.timestamp).fromNow()} />
   <cash>
     Amount: ${^flash.amount}
   </cash>

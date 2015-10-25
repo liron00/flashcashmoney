@@ -1,8 +1,8 @@
 import Firebase from 'firebase'
 
 const firebaseName = 'flashcashmoney'
-
 export const ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
+
 
 view Main {
   /*

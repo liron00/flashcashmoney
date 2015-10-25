@@ -1,10 +1,7 @@
 const bigArray = []
-const hack = `
-  for (let i = 0; i < 10000; i++) {
-    bigArray.push({})
-  }
-`
-eval(hack)
+for (let i = 0; i < 10000; i++) {
+  bigArray.push({})
+}
 
 view Cash {
   <dollar-img src="/static/images/dollar.jpg" repeat={bigArray.slice(0, ^amount)} />

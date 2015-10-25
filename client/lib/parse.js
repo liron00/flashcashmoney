@@ -8,7 +8,7 @@ export const Parse = {
           'X-Parse-REST-API-Key': CONFIG.parseRestApiKey,
           'Content-Type': 'application/json'
         },
-        data: {},
+        data: JSON.stringify(kwArgs),
         success: (data, textStatus) => {
           if (successCallback) {
             successCallback(data.result)
@@ -16,7 +16,7 @@ export const Parse = {
         },
         error: (jqXHR, textStatus, errorThrown) => {
           if (errorCallback) {
-            errorCallback(errorThrown)
+            errorCallback(jqXHR.responseJSON)
           }
         }
       })

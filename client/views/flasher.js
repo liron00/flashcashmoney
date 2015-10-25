@@ -2,6 +2,20 @@ view Flasher {
   let amountStr = "10"
   
   const flash = () => {
+    const stripeHandler = StripeCheckout.configure({
+        key: CONFIG.stripeTestPublishableKey,
+        name: "YO LET'S MAKE IT RAIN!",
+        description: "💸💧",
+        image: 'TODO',
+        locale: 'auto',
+        panelLabel: "Flash {{amount}}",
+        email: ^user.email,
+        bitcoin: true,
+        token: (token) => {
+          console.log("Got token:", token)
+        }
+    })
+      
     let amount = parseInt(amountStr)
     
     if (isNaN(amount) || amount <= 0 || amount.toString() != amountStr) {
@@ -9,11 +23,17 @@ view Flasher {
       return
     }
     
-    let flashRef = ref.child('flashes').push({
-      uid: ^user.uid,
-      amount: amount,
-      timestamp: Firebase.ServerValue.TIMESTAMP
+    stripeHandler.open({
+      amount: 100 * amount
     })
+
+    if (false) {
+      let flashRef = ref.child('flashes').push({
+        uid: ^user.uid,
+        amount: amount,
+        timestamp: Firebase.ServerValue.TIMESTAMP
+      })
+    }
   }
   
   <dollarSign>$</dollarSign>

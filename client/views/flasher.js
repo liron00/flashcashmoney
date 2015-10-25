@@ -2,6 +2,8 @@ view Flasher {
   let amountStr = "10"
   
   const flash = () => {
+    let amount = parseInt(amountStr)
+    
     const stripeHandler = StripeCheckout.configure({
         key: CONFIG.stripeTestPublishableKey,
         name: "YO LET'S MAKE IT RAIN!",
@@ -12,12 +14,24 @@ view Flasher {
         email: ^user.email,
         bitcoin: true,
         token: (token) => {
-          console.log("Got token:", token)
+          Parse.Cloud.run(
+            "flash",
+            {
+              uid: ^user.uid,
+              amount: amount,
+              stripeToken: token
+            },
+            data => {
+              console.log("Flash success!", data)
+            },
+            err => {
+              console.error(err)
+              alert("Error: " + err)
+            }
+          );
         }
     })
       
-    let amount = parseInt(amountStr)
-    
     if (isNaN(amount) || amount <= 0 || amount.toString() != amountStr) {
       alert("Invalid amount")
       return

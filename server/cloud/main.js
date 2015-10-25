@@ -1,20 +1,20 @@
 var config = {
+    firebaseAppName: 'flashcashmoney',
+    firebaseAppSecret: 'bVdqhMf0aLoIhVTalf8uhNKxkwrZdmX8To6L8r2X',
+    
     stripeTestSecretKey: 'sk_test_W8438ywJgGRb4WcHvu3zTcEc',
     stripeLiveSecretKey: 'sk_live_qEaKjM1OQc9n9c71wK1FMe6c',
+    
     isLive: false
 };
+
+var firebaseApiBaseUrl = "https://" + firebaseAppName + ".firebaseio.com/";
 
 var stripeSecretKey = (
   config.isLive? config.stripeLiveSecretKey : config.stripeTestSecretKey
 );
-
 var stripeApiBaseUrl = "https://" + stripeSecretKey + ":@api.stripe.com/v1/";
 
-
-
-Parse.Cloud.define("hello", function(request, response) {
-  response.success("Hello world!");
-});
 
 Parse.Cloud.define("flash", function(request, response) {
   var amount = request.params.amount;
@@ -33,7 +33,14 @@ Parse.Cloud.define("flash", function(request, response) {
       statement_descriptor: "FlashCash.money"
     },
     success: function(resp) {
-      response.success(resp);
+      /*
+        TODO: Change to promise format
+        then follow up on success by doing
+        an admin REST request to Firebase
+        to write the flash entry.
+      */
+      
+      response.success("woo");
     },
     error: function(resp) {
       response.error(resp.data.error.message);      

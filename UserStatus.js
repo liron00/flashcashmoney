@@ -12,19 +12,23 @@ view UserStatus {
     ref.unauth()
 
   <loggedIn if={^user}>
-    Hi <User user={^user} />
+    <User user={^user} />
     <logout-a href="#" onClick={logout}>Log out</logout-a>
   </loggedIn>
 
   <notLoggedIn if={!^user}>
     <button onClick={login}>Log in with Facebook</button>
   </notLoggedIn>
+  
+  $loggedIn = {
+    flexDirection: 'row'
+  }
+  
+  $logout = {
+    marginLeft: 10
+  }
 
   $userInfo = {
     fontWeight: 'bold'
-  }
-
-  $logout = {
-    paddingLeft: 4
   }
 }

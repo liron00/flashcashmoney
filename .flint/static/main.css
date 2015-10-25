@@ -11,20 +11,22 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  display: -ms-flexbox;
-  display: -webkit-flex;
+body, body * {
+  /* display: -ms-flexbox; */
+  /* display: -webkit-flex; */
   display: flex;
   flex-flow: column;
-  flex-shrink: 1;
-  align-items: stretch;
-  box-sizing: border-box;
-  flex-wrap: wrap;
+  /* flex-shrink: 1; */
+  /* align-items: stretch; */
+  /* box-sizing: border-box; */
+  /* flex-wrap: wrap; */
 
+  /*
   -webkit-flex-flow: column;
   -webkit-flex-shrink: 1;
   -webkit-align-items: stretch;
   -webkit-flex-wrap: wrap;
+  */
 }
 
 /* get the main to take up full screen by default */
@@ -75,13 +77,13 @@ pre code {
 
 img {
   display: block;
-  flex-shrink: 0;
-  width: auto;
-  height: auto;
-  margin: 0 auto;
-  max-width: 100%;
+  /* flex-shrink: 0; */
+  /* width: auto; */
+  /* height: auto; */
+  /* margin: 0 auto; */
+  /* max-width: 100%; */
 
-  -webkit-flex-shrink: 0;
+  /* -webkit-flex-shrink: 0; */
 }
 
 li {

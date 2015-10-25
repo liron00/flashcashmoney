@@ -57,10 +57,14 @@ view Main {
   <Flash repeat={flashes} flash={_} />
 
   $ = {
-    flexDirection: "row"
+    flexWrap: 'nowrap'
   }
-
-  $userObject = {
-    fontFamily: 'courier new'
+  
+  $UserStatus = {
+    marginBottom: 20
+  }
+  
+  $Flasher = {
+    marginBottom: 20
   }
 }

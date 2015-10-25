@@ -11,4 +11,8 @@ view Flasher {
   
   <input type="text" />
   <flash-button disabled={!^user} onClick={flash}>Flash</flash-button>
+  
+  $ = {
+    flexDirection: 'row'
+  }
 }

@@ -1,12 +1,28 @@
 view User {
-  <userLoaded if={^user.displayName}>
+  <loaded if={^user.displayName}>
     <photo-img src={^user.photoUrl} />
     <name>{^user.displayName}</name>
-  </userLoaded>
+  </loaded>
   
-  <userDidntLoad if={!^user.displayName}>
+  <didntLoad if={!^user.displayName}>
     <uid>Unknown user {JSON.stringify(^user.uid)}</uid>
-  </userDidntLoad>
+  </didntLoad>
+  
+  $loaded = {
+    flexFlow: 'row',
+    alignItems: 'flex-start'
+  }
+  
+  $photo = {
+    maxWidth: 40,
+    maxHeight: 40,
+    marginRight: 8
+  }
+  
+  $name = {
+    fontSize: 18,
+    fontWeight: 'bold'
+  }
   
   $uid = {
     fontFamily: 'courier new'

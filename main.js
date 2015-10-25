@@ -38,18 +38,18 @@ view Main {
 
 
 
+  const flashesRef = ref.child('flashes')
   let count = null
-  let flashes$ = ref.child('flashes')
-  let flashes = [];
+  let flashes = []
 
-  flashes$.on('value', data => {
-    flashes = [];
-    for (let key in data.val()) {
-      let flash = data.val()[key];
-      flash.id = key;
-      flashes.push(flash);
-    }
-    console.log("data:", data.val())
+  flashesRef.limitToLast(10).on('value', flashesSnapshot => {
+    flashes = []
+    flashesSnapshot.forEach(flashSnapshot => {
+      const flash = flashSnapshot.val()
+      flash.id = flashSnapshot.key()
+      flashes.push(flash)
+    })
+    flashes.sort((a, b) => b.timestamp - a.timestamp)
   })
 
   <UserStatus user={user} />

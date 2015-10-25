@@ -2,12 +2,13 @@ view Flash {
   let user = {uid: ^flash.uid}
   let userRef = ref.child('users').child(user.uid)
   
-  userRef.on('value', data => {
-    Object.assign(user, data.val())
+  userRef.on('value', userSnapshot => {
+    Object.assign(user, userSnapshot.val())
+    setTimeout(view.update)
   })
   
   <User user={user} />
-  <div>Time: {^flash.timestamp}</div>
+  <Timestamp timestamp={new Date(^flash.timestamp)} />
   <cash>
     Amount: ${^flash.amount}
   </cash>

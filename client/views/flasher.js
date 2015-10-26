@@ -19,14 +19,14 @@ view Flasher {
             {
               uid: ^user.uid,
               amount: amount,
-              stripeToken: token
+              stripeToken: token.id
             },
             data => {
               console.log("Flash success!", data)
             },
             err => {
               console.error(err)
-              alert("Error: " + err)
+              alert(err.error)
             }
           );
         }

@@ -8,13 +8,12 @@ var config = {
     isLive: false
 };
 
-var firebaseApiBaseUrl = "https://" + firebaseAppName + ".firebaseio.com/";
+var firebaseApiBaseUrl = "https://" + config.firebaseAppName + ".firebaseio.com/";
 
 var stripeSecretKey = (
   config.isLive? config.stripeLiveSecretKey : config.stripeTestSecretKey
 );
 var stripeApiBaseUrl = "https://" + stripeSecretKey + ":@api.stripe.com/v1/";
-
 
 Parse.Cloud.define("flash", function(request, response) {
   var amount = request.params.amount;
@@ -31,19 +30,17 @@ Parse.Cloud.define("flash", function(request, response) {
       currency: 'usd',
       source: request.params.stripeToken,
       statement_descriptor: "FlashCash.money"
-    },
-    success: function(resp) {
-      /*
-        TODO: Change to promise format
-        then follow up on success by doing
-        an admin REST request to Firebase
-        to write the flash entry.
-      */
-      
-      response.success("woo");
-    },
-    error: function(resp) {
-      response.error(resp.data.error.message);      
     }
+  }).then(function(resp) {
+    /*
+      admin REST request to Firebase
+      to write the flash entry.
+    */
+      
+  }, function(resp) {
+    response.error(resp.data.error.message);      
+    
+  }).then(function(resp) {
+      response.success("woo");
   });
 });

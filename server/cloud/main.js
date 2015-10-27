@@ -23,8 +23,8 @@ Parse.Cloud.define("flash", function(request, response) {
   }
   
   Parse.Cloud.httpRequest({
-    url: stripeApiBaseUrl + 'charges',
     method: 'POST',
+    url: stripeApiBaseUrl + 'charges',
     params: {
       amount: 100 * amount,
       currency: 'usd',
@@ -32,15 +32,33 @@ Parse.Cloud.define("flash", function(request, response) {
       statement_descriptor: "FlashCash.money"
     }
   }).then(function(resp) {
-    /*
-      admin REST request to Firebase
-      to write the flash entry.
-    */
+    // Stripe request success
+    return Parse.Cloud.httpRequest({
+      method: 'POST',
+      url: firebaseApiBaseUrl + "flashes.json",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      params: {
+        auth: config.firebaseAppSecret
+      },
+      body: JSON.stringify({
+        amount: amount,
+        timestamp: {'.sv': 'timestamp'},
+        uid: request.params.uid
+      })
+    });
       
   }, function(resp) {
+    // Stripe request error
     response.error(resp.data.error.message);      
     
   }).then(function(resp) {
-      response.success("woo");
+    // Firebase request success
+    response.success({flashId: resp.data.name});
+    
+  }, function(resp) {
+    // Firebase request error
+    response.error(resp.data.error.message);
   });
 });

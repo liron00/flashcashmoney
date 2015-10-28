@@ -37,21 +37,17 @@ view Main {
       user = null
     }
   })
-
-
-  <UserStatus user={user} />
-  <Flasher user={user} />
-  <Flashes />
-
-  $ = {
-    flexWrap: 'nowrap'
+  
+  <NavBar user={user} />
+  <HomePage route="/" user={user} />
+  <AboutPage route="/about" />
+  <UserPage route="/:userSlug" />
+  
+  $NavBar = {
+    marginBottom: 20
   }
   
-  $UserStatus = {
-  }
-  
-  $Flasher = {
-    marginTop: 40,
-    marginBottom: 40
+  $.userLink = {
+    fontSize: 24
   }
 }

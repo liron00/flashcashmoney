@@ -25,10 +25,8 @@ view UserPage {
     activeUserFlashes = undefined
     expiredUserFlashes = undefined
     
-    let userSlugRef = ref.child('userSlugs') //.child(userSlug)
-    console.log(1, userSlugRef.toString())
+    let userSlugRef = ref.child('userSlugs').child(userSlug)
     userSlugRef.once('value', userSlugSnapshot => {
-      console.log(2)
       uid = userSlugSnapshot.val()
       if (!uid) {
         user = null

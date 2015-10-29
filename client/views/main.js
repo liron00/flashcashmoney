@@ -22,12 +22,19 @@ view Main {
       const newUserFields = {
         email: authData.facebook.email || null,
         displayName: authData.facebook.displayName || null,
-        photoUrl: authData.facebook.profileImageURL || null
+        photoUrl: authData.facebook.profileImageURL || null,
       }
-      
       user = Object.assign({uid: authData.uid}, newUserFields)
       
-      userRef.update(newUserFields)
+      userRef.transaction(currentUserFields => {
+        const userFields = Object.assign(currentUserFields || {}, newUserFields)
+        if (!userFields.createdTimestamp) {
+          // New user
+          userFields.createdTimestamp = Firebase.ServerValue.TIMESTAMP
+        }
+        userFields.seenTimestamp = Firebase.ServerValue.TIMESTAMP
+        return userFields
+      })
       
       userRef.on('value', data => {
         Object.assign(user, data.val())

@@ -1,6 +1,6 @@
 view User {  
   <loaded if={^user.displayName}>
-    <photo-img src={^user.photoUrl} />
+    <UserCircle size={32} user={^user} />
     <name>{^user.displayName}</name>
   </loaded>
   <didntLoad if={!^user.displayName}>
@@ -12,9 +12,7 @@ view User {
     alignItems: 'flex-start'
   }
   
-  $photo = {
-    maxWidth: 40,
-    maxHeight: 40,
+  $UserCircle = {
     marginRight: 8
   }
   

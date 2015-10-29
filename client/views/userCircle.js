@@ -1,8 +1,10 @@
 view UserCircle {
-  <photo-img src={^user.photoUrl} />
-  
-  $photo = {
-    maxWidth: 100,
-    maxHeight: 100
+  $ = {
+    width: ^size || 100,
+    height: ^size || 100,
+    borderRadius: '50%',
+    backgroundImage: `url(${^user.photoUrl})`,
+    backgroundSize: 'cover',
+    backgroundPosition: '50%'
   }
 }

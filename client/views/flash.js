@@ -10,7 +10,9 @@ view Flash {
   })
   
   <userSection if={^showUser != false}>
-    <User user={user} />
+    <Link to={"/" + user.uid}>
+      <User user={user} />
+    </Link>
   </userSection>
   <Timestamp timestamp={new Date(^flash.timestamp)} />
   <Cash amount={^flash.amount} />

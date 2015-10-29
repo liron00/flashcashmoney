@@ -96,7 +96,7 @@ view UserPage {
           <Flash flash={periodFlash} showUser={false} />
         </yesRecentFlash>
         
-        <flashesDetail if={^authUser && (^authUser.isAdmin || ^authUser.uid == user.uid)}>
+        <flashesDetail>
           <activeFlashes if={activeUserFlashes.length > 0}>
             <h1>Active flashes</h1>
             <Flash repeat={activeUserFlashes} flash={_} showUser={false} />

@@ -4,14 +4,14 @@ view TopFlashes {
     .orderByChild("timestamp")
     .startAt(now - 1000 * CONFIG.flashPeriod)
     
-  let flashes = [] // reverse chronological
-  let flashesByUid = {} // uid: [reverse chrono flashes]
+  let flashes // [reverse chrono flashes]
+  let flashesByUid // uid: [reverse chrono flashes]
   
   // A period flash object is like a flash, except its
   // amount is this uid's aggregate from this flashPeriod.
   // E.g. if a user flashed $5 and $6 in the last 24 hours,
   // they would have one periodFlash with an amount of 11.
-  let periodFlashes = []
+  let periodFlashes
   
   flashesQuery.on('value', flashesSnapshot => {
     flashes = []
@@ -46,5 +46,10 @@ view TopFlashes {
   });
   
 
-  <Flash repeat={periodFlashes} flash={_} />
+  <loadingFlashes if={flashes === undefined}>
+    Loading flashes...
+  </loadingFlashes>
+  <flashesLoaded if={periodFlashes}>
+    <Flash repeat={periodFlashes} flash={_} />
+  </flashesLoaded>
 }

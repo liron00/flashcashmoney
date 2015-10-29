@@ -28,9 +28,7 @@ view Main {
       user = Object.assign({uid: authData.uid}, newUserFields)
       
       doUserTransaction = (userSlugIndex) => {
-        console.log("DO transaction", userSlugIndex)
         userRef.transaction(currentUserFields => {
-          console.log("Trying transaction", userSlugIndex)
           const userFields = Object.assign(currentUserFields || {}, newUserFields)
           if (!userFields.createdTimestamp) {
             // New user
@@ -43,8 +41,6 @@ view Main {
           userFields.seenTimestamp = Firebase.ServerValue.TIMESTAMP
           return userFields
         }, (error, committed, userSnapshot) => {
-          console.log("onComplete", error, committed, userSnapshot? userSnapshot.val() : null)
-          
           if (error) {
             if (error.message == "permission_denied") {
               nextUserSlugIndex += 1

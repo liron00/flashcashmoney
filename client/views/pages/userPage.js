@@ -11,68 +11,83 @@ view UserPage {
     return false
   }
   
-  let uid, user
+  let userSlug, uid, user
   let activeUserFlashes, expiredUserFlashes
   on('props', () => {
-    if (isStaticRoute() || uid == ^params.userSlug) {
+    if (isStaticRoute() || userSlug == ^params.userSlug) {
       return
     }
     
     // TODO: Use actual user slugs
-    uid = ^params.userSlug
+    userSlug = ^params.userSlug
     user = undefined
     periodFlash = undefined
     activeUserFlashes = undefined
     expiredUserFlashes = undefined
     
-    let userRef = ref.child('users').child(uid)
-    userRef.on('value', (userSnapshot) => {
-      user = userSnapshot.val()
-      if (user) {
-        user.uid = uid
-      }
-    })
-    
-    let flashesQuery = ref.child('flashes')
-      .orderByChild("uid")
-      .equalTo(uid)
-    flashesQuery.on('value', (userFlashesSnapshot) => {
-      const userFlashes = []
-      userFlashesSnapshot.forEach(flashSnapshot => {
-        const flash = flashSnapshot.val()
-        flash.id = flashSnapshot.key()
-        userFlashes.push(flash)
-      })
-      userFlashes.sort((a, b) => b.timestamp - a.timestamp)
-      
-      const now = new Date().getTime() 
-      const periodStart = now - 1000 * CONFIG.flashPeriod
-      
-      activeUserFlashes = []
-      expiredUserFlashes = []
-      for (userFlash of userFlashes) {
-        if (userFlash.timestamp > periodStart) {
-          activeUserFlashes.push(userFlash)
-        } else {
-          expiredUserFlashes.push(userFlash)
-        }
-      }
-      
-      if (activeUserFlashes.length > 0) {
-        let amount = 0
-        for (activeUserFlash of activeUserFlashes) {
-          amount += activeUserFlash.amount
-        }
-        periodFlash = {
-          uid: uid,
-          timestamp: activeUserFlashes[0].timestamp,
-          amount: amount
-        }
-      } else {
+    let userSlugRef = ref.child('userSlugs') //.child(userSlug)
+    console.log(1, userSlugRef.toString())
+    userSlugRef.once('value', userSlugSnapshot => {
+      console.log(2)
+      uid = userSlugSnapshot.val()
+      if (!uid) {
+        user = null
         periodFlash = null
+        activeUserFlashes = null
+        expiredUserFlashes = null
+        return
       }
+      
+      let userRef = ref.child('users').child(uid)
+      userRef.on('value', (userSnapshot) => {
+        user = userSnapshot.val()
+        if (user) {
+          user.uid = uid
+        }
+      })
+      
+      let flashesQuery = ref.child('flashes')
+        .orderByChild("uid")
+        .equalTo(uid)
+      flashesQuery.on('value', (userFlashesSnapshot) => {
+        const userFlashes = []
+        userFlashesSnapshot.forEach(flashSnapshot => {
+          const flash = flashSnapshot.val()
+          flash.id = flashSnapshot.key()
+          userFlashes.push(flash)
+        })
+        userFlashes.sort((a, b) => b.timestamp - a.timestamp)
+        
+        const now = new Date().getTime() 
+        const periodStart = now - 1000 * CONFIG.flashPeriod
+        
+        activeUserFlashes = []
+        expiredUserFlashes = []
+        for (userFlash of userFlashes) {
+          if (userFlash.timestamp > periodStart) {
+            activeUserFlashes.push(userFlash)
+          } else {
+            expiredUserFlashes.push(userFlash)
+          }
+        }
+        
+        if (activeUserFlashes.length > 0) {
+          let amount = 0
+          for (activeUserFlash of activeUserFlashes) {
+            amount += activeUserFlash.amount
+          }
+          periodFlash = {
+            uid: uid,
+            timestamp: activeUserFlashes[0].timestamp,
+            amount: amount
+          }
+        } else {
+          periodFlash = null
+        }
+      })
     })
   })
+    
   
   <userPage if={!isStaticRoute()}>
     <userLoadingSection if={user === undefined}>

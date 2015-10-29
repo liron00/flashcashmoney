@@ -10,7 +10,7 @@ view Flash {
   })
   
   <userSection if={^showUser != false}>
-    <Link to={"/" + user.uid}>
+    <Link to={"/" + user.slug}>
       <User user={user} />
     </Link>
   </userSection>

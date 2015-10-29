@@ -1,8 +1,11 @@
 view MoneyClip {
+  let amountStr = ""
+  let amount = null
+  
   const onChange = (e) => {
-    const amountStr = e.target.value
-    let amount = parseInt(amountStr, 10)
-    if (isNaN(amount) || amount <= 0 || !(
+    amountStr = e.target.value
+    amount = parseInt(amountStr, 10)
+    if (isNaN(amount) || amount <= 0 || amount > 1000 || !(
       amount.toString() == amountStr ||
       amount.toString() + ".00" == amountStr
     )) {
@@ -22,6 +25,7 @@ view MoneyClip {
       <dollarSign>$</dollarSign>
       <amount-input
         type="text"
+        defaultValue={amountStr}
         maxLength="5"
         onChange={onChange} />
     </cashInput>
@@ -72,9 +76,10 @@ view MoneyClip {
     height: 70,
     paddingLeft: 10,
     fontSize: 36,
-    fontWeight: 'bold',
     background: 'none',
     border: 'none',
-    color: 'white'
+    fontWeight: (amount || !amountStr)? 'bold' : null,
+    color: (amount || !amountStr)? 'white' : 'red',
+    textDecoration: (amount || !amountStr)? null : 'line-through'
   }
 }

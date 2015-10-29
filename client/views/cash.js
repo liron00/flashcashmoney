@@ -1,6 +1,6 @@
 view Cash {
-  const BILL_OFFSET = 10
-  const DENOM_OFFSET = 28
+  const BILL_OFFSET = 25
+  const DENOM_OFFSET = 25
   const billHeight = CONFIG.billWidth / CONFIG.billAspectRatio
   let width
   let height

@@ -97,11 +97,11 @@ view UserPage {
         </yesRecentFlash>
         
         <flashesDetail if={^authUser && (^authUser.isAdmin || ^authUser.uid == user.uid)}>
-          <activeFlashes if={activeUserFlashes.length}>
+          <activeFlashes if={activeUserFlashes.length > 0}>
             <h1>Active flashes</h1>
             <Flash repeat={activeUserFlashes} flash={_} showUser={false} />
           </activeFlashes>
-          <expiredFlashes if={expiredUserFlashes.length}>
+          <expiredFlashes if={expiredUserFlashes.length > 0}>
             <h1>Expired flashes</h1>
             <Flash repeat={expiredUserFlashes} flash={_} showUser={false} />
           </expiredFlashes>

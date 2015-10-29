@@ -87,13 +87,26 @@ view UserPage {
       <loadingFlashes if={periodFlash === undefined}>
         Loading flash...
       </loadingFlashes>
-      <noRecentFlash if={periodFlash === null}>
-        Not flashing any cash.
-      </noRecentFlash>
-      <yesRecentFlash if={periodFlash}>
-        <Flash flash={periodFlash} showUser={false} />
-      </yesRecentFlash>
       
+      <flashesLoaded if={periodFlash !== undefined}>
+        <noRecentFlash if={periodFlash === null}>
+          Not flashing any cash.
+        </noRecentFlash>
+        <yesRecentFlash if={periodFlash}>
+          <Flash flash={periodFlash} showUser={false} />
+        </yesRecentFlash>
+        
+        <flashesDetail if={^authUser && (^authUser.isAdmin || ^authUser.uid == user.uid)}>
+          <activeFlashes if={activeUserFlashes.length}>
+            <h1>Active flashes</h1>
+            <Flash repeat={activeUserFlashes} flash={_} showUser={false} />
+          </activeFlashes>
+          <expiredFlashes if={expiredUserFlashes.length}>
+            <h1>Expired flashes</h1>
+            <Flash repeat={expiredUserFlashes} flash={_} showUser={false} />
+          </expiredFlashes>
+        </flashesDetail>
+      </flashesLoaded>
     </userExists>
   </userPage>
   

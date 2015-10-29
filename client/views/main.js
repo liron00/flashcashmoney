@@ -38,10 +38,10 @@ view Main {
     }
   })
   
-  <NavBar user={user} />
-  <HomePage route="/" user={user} />
-  <AboutPage route="/about" />
-  <UserPage route="/:userSlug" />
+  <NavBar authUser={user} />
+  <HomePage route="/" authUser={user} />
+  <AboutPage route="/about" authUser={user} />
+  <UserPage route="/:userSlug" authUser={user} />
   
   $NavBar = {
     marginBottom: 20

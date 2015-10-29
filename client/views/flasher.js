@@ -11,13 +11,13 @@ view Flasher {
         image: 'TODO',
         locale: 'auto',
         panelLabel: "Flash {{amount}}",
-        email: ^user.email,
+        email: ^authUser.email,
         bitcoin: true,
         token: (token) => {
           Parse.Cloud.run(
             "flash",
             {
-              uid: ^user.uid,
+              uid: ^authUser.uid,
               amount: amount,
               stripeToken: token.id
             },
@@ -43,7 +43,7 @@ view Flasher {
 
     if (false) {
       let flashRef = ref.child('flashes').push({
-        uid: ^user.uid,
+        uid: ^authUser.uid,
         amount: amount,
         timestamp: Firebase.ServerValue.TIMESTAMP
       })
@@ -56,7 +56,7 @@ view Flasher {
       flash()
     }
   }} />
-  <flash-button disabled={!^user} onClick={flash}>Flash</flash-button>
+  <flash-button disabled={!^authUser} onClick={flash}>Flash</flash-button>
   
   $ = {
     flexDirection: 'row',

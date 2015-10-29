@@ -11,12 +11,12 @@ view UserStatus {
   let logout = () =>
     ref.unauth()
 
-  <loggedIn if={^user}>
-    <User user={^user} />
+  <loggedIn if={^authUser}>
+    <User user={^authUser} />
     <logout-a href="#" onClick={logout}>Log out</logout-a>
   </loggedIn>
 
-  <notLoggedIn if={!^user}>
+  <notLoggedIn if={!^authUser}>
     <button onClick={login}>Log in with Facebook</button>
   </notLoggedIn>
   

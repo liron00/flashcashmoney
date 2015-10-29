@@ -12,6 +12,7 @@ view TopFlashes {
   // E.g. if a user flashed $5 and $6 in the last 24 hours,
   // they would have one periodFlash with an amount of 11.
   let periodFlashes
+  let sortedPeriodFlashes
   
   flashesQuery.on('value', flashesSnapshot => {
     flashes = []
@@ -30,6 +31,7 @@ view TopFlashes {
       flashesByUid[flash.uid].push(flash)
     })
     
+    sortedPeriodFlashes = undefined
     periodFlashes = []
     for (let uid in flashesByUid) {
       let periodAmount = 0
@@ -43,13 +45,15 @@ view TopFlashes {
         timestamp: flashesByUid[uid][0].timestamp
       })
     }
+    periodFlashes.sort((a, b) => b.amount - a.amount)
+    sortedPeriodFlashes = periodFlashes
   });
   
 
   <loadingFlashes if={flashes === undefined}>
     Loading flashes...
   </loadingFlashes>
-  <flashesLoaded if={periodFlashes}>
-    <Flash repeat={periodFlashes} flash={_} />
+  <flashesLoaded if={sortedPeriodFlashes}>
+    <Flash repeat={sortedPeriodFlashes} flash={_} />
   </flashesLoaded>
 }

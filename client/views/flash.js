@@ -6,9 +6,9 @@ view Flash {
   
   userRef.on('value', userSnapshot => {
     Object.assign(user, userSnapshot.val())
-    setTimeout(view.update)
   })
   
+
   <userSection if={^showUser != false}>
     <Link to={"/" + user.slug}>
       <User user={user} />

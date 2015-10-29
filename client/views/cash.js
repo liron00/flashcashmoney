@@ -1,6 +1,6 @@
 view Cash {
   <num>{"$" + ^amount}</num>
-  <dollar-img src="/static/images/dollar.jpg" repeat={^amount} />
+  <dollar-img src="/static/images/1bill.jpg" repeat={^amount} />
   
   $ = {
     flexDirection: 'row'

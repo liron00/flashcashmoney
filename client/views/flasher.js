@@ -1,8 +1,17 @@
 view Flasher {
-  let amountStr = "10"
+  let amount = null
+  
+  const onAmountChange = (e) => {
+    amount = e.amount
+  }
   
   const flash = () => {
-    let amount = parseInt(amountStr)
+    const flashAmount = amount
+    
+    if (!flashAmount) {
+      alert("Invalid amount")
+      return
+    }
     
     const stripeHandler = StripeCheckout.configure({
         key: CONFIG.stripeTestPublishableKey,
@@ -18,7 +27,7 @@ view Flasher {
             "flash",
             {
               uid: ^authUser.uid,
-              amount: amount,
+              amount: flashAmount,
               stripeToken: token.id
             },
             data => {
@@ -31,31 +40,13 @@ view Flasher {
           );
         }
     })
-      
-    if (isNaN(amount) || amount <= 0 || amount.toString() != amountStr) {
-      alert("Invalid amount")
-      return
-    }
     
     stripeHandler.open({
-      amount: 100 * amount
+      amount: 100 * flashAmount
     })
-
-    if (false) {
-      let flashRef = ref.child('flashes').push({
-        uid: ^authUser.uid,
-        amount: amount,
-        timestamp: Firebase.ServerValue.TIMESTAMP
-      })
-    }
   }
   
-  <dollarSign>$</dollarSign>
-  <amount-input type="text" sync={amountStr} onKeyDown={(e) => {
-    if (e.keyCode == 13) {
-      flash()
-    }
-  }} />
+  <MoneyClip onChange={onAmountChange} />
   <flash-button disabled={!^authUser} onClick={flash}>Flash</flash-button>
   
   $ = {
@@ -64,17 +55,6 @@ view Flasher {
     marginLeft: 8
   }
   
-  $dollarSign = {
-    fontSize: 36,
-    fontWeight: 'bold'
-  }
-  
-  $amount = {
-    width: 150,
-    height: 50,
-    fontSize: 32,
-    fontWeight: 'bold'
-  }
   
   $flash = {
     alignSelf: 'center',

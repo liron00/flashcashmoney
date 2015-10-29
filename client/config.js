@@ -1,4 +1,6 @@
 export const CONFIG = {
+  billWidth: 200,
+  billAspectRatio: 2.35,
   denominations: [100, 50, 20, 10, 5, 1],
   flashPeriod: 24 * 3600,
   parseApplicationId: 'f972z3mrGZGGdtfIatNtVYRA3fHjO7GM14ekZMbk',

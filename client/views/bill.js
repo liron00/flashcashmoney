@@ -1,8 +1,9 @@
 view Bill {
-  <bill-img src={`/static/images/${^denomination}bill.jpg`} />
+  <img src={`/static/images/${^denomination}bill.jpg`} />
   
-  $bill = {
-    width: 200,
-    padding: 8
+  $img = {
+    width: CONFIG.billWidth - 2,
+    height: CONFIG.billWidth / CONFIG.billAspectRatio - 2,
+    border: '1px solid #ddd'
   }
 }

@@ -1,25 +1,71 @@
 view Cash {
-  const getBills = () => {
+  const BILL_OFFSET = 10
+  const DENOM_OFFSET = 28
+  const billHeight = CONFIG.billWidth / CONFIG.billAspectRatio
+  let width
+  let height
+  
+  const getBillStacks = () => {
     const denomMap = util.getDenominationMap(^amount, CONFIG.denominations)
-    const bills = []
+    const billStacks = []
+    
+    width = 0
+    height = 0
+    let i = 0
     for (denom of CONFIG.denominations) {
       const numBills = denomMap[denom] || 0
-      for (let i=0; i<numBills; i++) {
-        bills.push({
-          denomination: denom
+      if (numBills > 0) {
+        let left = width
+        let top = height
+        if (i > 0) {
+          left = left - CONFIG.billWidth + DENOM_OFFSET
+          top = top - billHeight + DENOM_OFFSET
+        }
+        billStacks.push({
+          num: numBills,
+          denomination: denom,
+          left: left,
+          top: top,
         })
+        if (i == 0) {
+          width = CONFIG.billWidth
+          height = billHeight
+        } else {
+          width += DENOM_OFFSET
+          height += DENOM_OFFSET
+        }
+        width += BILL_OFFSET * (numBills - 1)
+        height += BILL_OFFSET * (numBills - 1)
+        i += 1
       }
     }
-    return bills
+    return billStacks
   }
     
-  <Bill repeat={getBills()} denomination={_.denomination} />
+  let billStacks = getBillStacks()
+  
+  on('props', () => {
+    billStacks = getBillStacks()
+  })
+  
+  <x>
+    <billStackWrapper repeat={billStacks}>
+      <BillStack
+        num={_.num}
+        denomination={_.denomination}
+        offset={BILL_OFFSET} />
+    </billStackWrapper>
+  </x>
   
   $ = {
-    flexDirection: 'row'
+    position: 'relative',
+    width,
+    height
   }
   
-  $dollar = {
-    maxWidth: 120
+  $billStackWrapper = {
+    position: 'absolute',
+    left: billStacks[_index].left,
+    top: billStacks[_index].top
   }
 }

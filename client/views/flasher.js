@@ -47,7 +47,14 @@ view Flasher {
   }
   
   <MoneyClip onChange={onAmountChange} />
-  <flash-button disabled={!^authUser} onClick={flash}>Flash</flash-button>
+  <arrow-img src="/static/images/arrow.png"></arrow-img>
+  <yesValidAmount if={!!amount}>
+    <Cash amount={amount} />
+    <flash-button disabled={!^authUser} onClick={flash}>Flash</flash-button>
+  </yesValidAmount>
+  <noValidAmount if={!amount}>
+    Enter an amount of cash to flash.
+  </noValidAmount>
   
   $ = {
     flexDirection: 'row',
@@ -55,6 +62,17 @@ view Flasher {
     marginLeft: 8
   }
   
+  $noValidAmount = {
+    color: '#666',
+    fontStyle: 'italic'
+  }
+  
+  $arrow = {
+    width: 200,
+    marginLeft: 50,
+    marginRight: 50,
+    opacity: .7
+  }
   
   $flash = {
     alignSelf: 'center',

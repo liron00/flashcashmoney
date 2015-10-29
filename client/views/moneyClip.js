@@ -70,7 +70,7 @@ view MoneyClip {
   $amount = {
     width: 120,
     height: 70,
-    paddingLeft: 6,
+    paddingLeft: 10,
     fontSize: 36,
     fontWeight: 'bold',
     background: 'none',

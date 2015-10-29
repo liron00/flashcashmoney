@@ -1,23 +1,57 @@
 import moment from 'moment'
 
 view Flash {
-  let user = {uid: ^flash.uid}
-  let userRef = ref.child('users').child(user.uid)
+  let user
   
-  userRef.on('value', userSnapshot => {
-    Object.assign(user, userSnapshot.val())
+  on('props', () => {
+    if (user && user.uid == ^flash.uid) {
+      return
+    }
+    user = {uid: ^flash.uid}
+    userRef = ref.child('users').child(user.uid)
+    
+    userRef.on('value', userSnapshot => {
+      Object.assign(user, userSnapshot.val())
+    })
   })
-  
 
-  <userSection if={^showUser != false}>
+  <leftColumn>
     <Link to={"/" + user.slug}>
-      <User user={user} />
+      <UserCircle user={user} />
     </Link>
-  </userSection>
-  <Timestamp timestamp={new Date(^flash.timestamp)} />
-  <Cash amount={^flash.amount} />
+  </leftColumn>
+  <rightColumn>
+    <feedLine>
+      <Link to={"/" + user.slug}>
+        {user.displayName}
+      </Link>
+      <flashed>&nbsp;flashed</flashed>
+      <amount>{"$" + ^flash.amount}</amount>
+      <Timestamp timestamp={new Date(^flash.timestamp)} />
+    </feedLine>
+    <Cash amount={^flash.amount} />
+  </rightColumn>
 
   $ = {
-    marginBottom: 20
+    marginBottom: 20,
+    flexDirection: 'row'
+  }
+  
+  $leftColumn = {
+    marginRight: 20
+  }
+  
+  $feedLine = {
+    flexDirection: 'row'
+  }
+  
+  $flashed = {
+  }
+  
+  $amount = {
+    marginLeft: 8,
+    marginRight: 8,
+    fontFamily: 'Copperplate',
+    fontSize: 18
   }
 }

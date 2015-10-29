@@ -1,7 +1,7 @@
 view HomePage {
   <UserStatus user={^user} />
   <Flasher user={^user} />
-  <Flashes />
+  <TopFlashes />
 
   $UserStatus = {
   }

@@ -9,7 +9,9 @@ view Flash {
     setTimeout(view.update)
   })
   
-  <User user={user} />
+  <userSection if={^showUser != false}>
+    <User user={user} />
+  </userSection>
   <Timestamp timestamp={new Date(^flash.timestamp)} />
   <Cash amount={^flash.amount} />
 

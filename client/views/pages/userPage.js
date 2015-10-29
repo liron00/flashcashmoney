@@ -11,9 +11,99 @@ view UserPage {
     return false
   }
   
-  const userSlug = ^params.userSlug
+  let uid, user
+  let activeUserFlashes, expiredUserFlashes
+  on('props', () => {
+    if (isStaticRoute() || uid == ^params.userSlug) {
+      return
+    }
+    
+    // TODO: Use actual user slugs
+    uid = ^params.userSlug
+    user = undefined
+    periodFlash = undefined
+    activeUserFlashes = undefined
+    expiredUserFlashes = undefined
+    
+    let userRef = ref.child('users').child(uid)
+    userRef.on('value', (userSnapshot) => {
+      user = userSnapshot.val()
+      if (user) {
+        user.uid = uid
+      }
+    })
+    
+    let flashesQuery = ref.child('flashes')
+      .orderByChild("uid")
+      .equalTo(uid)
+    flashesQuery.on('value', (userFlashesSnapshot) => {
+      const userFlashes = []
+      userFlashesSnapshot.forEach(flashSnapshot => {
+        const flash = flashSnapshot.val()
+        flash.id = flashSnapshot.key()
+        userFlashes.push(flash)
+      })
+      userFlashes.sort((a, b) => b.timestamp - a.timestamp)
+      
+      const now = new Date().getTime() 
+      const periodStart = now - 1000 * CONFIG.flashPeriod
+      
+      activeUserFlashes = []
+      expiredUserFlashes = []
+      for (userFlash of userFlashes) {
+        if (userFlash.timestamp > periodStart) {
+          activeUserFlashes.push(userFlash)
+        } else {
+          expiredUserFlashes.push(userFlash)
+        }
+      }
+      
+      if (activeUserFlashes.length > 0) {
+        let amount = 0
+        for (activeUserFlash of activeUserFlashes) {
+          amount += activeUserFlash.amount
+        }
+        periodFlash = {
+          uid: uid,
+          timestamp: activeUserFlashes[0].timestamp,
+          amount: amount
+        }
+      } else {
+        periodFlash = null
+      }
+    })
+  })
   
   <userPage if={!isStaticRoute()}>
-    This is the user page for {userSlug}
+    <userLoadingSection if={user === undefined}>
+      Loading <b>{^params.userSlug}</b>...
+    </userLoadingSection>
+    <userDoesntExist if={user === null}>
+      User <b>{^params.userSlug}</b> not found.
+    </userDoesntExist>
+    <userExists if={user}>
+      <User user={user} />
+      
+      <loadingFlashes if={periodFlash === undefined}>
+        Loading flash...
+      </loadingFlashes>
+      <noRecentFlash if={periodFlash === null}>
+        Not flashing any cash.
+      </noRecentFlash>
+      <yesRecentFlash if={periodFlash}>
+        <Flash flash={periodFlash} showUser={false} />
+      </yesRecentFlash>
+      
+    </userExists>
   </userPage>
+  
+  $userLoadingSection = {
+    flexDirection: 'row',
+    alignItems: 'baseline'
+  }
+  
+  $userDoesntExist = {
+    flexDirection: 'row',
+    alignItems: 'baseline'
+  }
 }

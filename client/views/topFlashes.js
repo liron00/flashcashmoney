@@ -1,7 +1,8 @@
-view Flashes {
+view TopFlashes {
   var now = new Date().getTime()
   const flashesQuery = ref.child('flashes')
-    .orderByChild("timestamp").startAt(now - 1000 * CONFIG.flashPeriod)
+    .orderByChild("timestamp")
+    .startAt(now - 1000 * CONFIG.flashPeriod)
     
   let flashes = [] // reverse chronological
   let flashesByUid = {} // uid: [reverse chrono flashes]
@@ -28,7 +29,6 @@ view Flashes {
       }
       flashesByUid[flash.uid].push(flash)
     })
-    console.log("flashesByUid", flashesByUid)
     
     periodFlashes = []
     for (let uid in flashesByUid) {

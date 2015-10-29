@@ -48,13 +48,21 @@ view Flasher {
   
   <MoneyClip onChange={onAmountChange} />
   <arrow-img src="/static/images/arrow.png"></arrow-img>
-  <yesValidAmount if={!!amount}>
-    <Cash amount={amount} />
-    <flash-button disabled={!^authUser} onClick={flash}>Flash</flash-button>
-  </yesValidAmount>
-  <noValidAmount if={!amount}>
-    Enter an amount of cash to flash.
-  </noValidAmount>
+  <rightColumn>
+    <trashTalkSection>
+      <trashTalkLabel>Enter a trash talk.</trashTalkLabel>
+      <trashTalk-input type="text" />
+    </trashTalkSection>
+    <yesValidAmount if={!!amount}>
+      <Cash amount={amount} />
+    </yesValidAmount>
+    <noValidAmount if={!amount}>
+      Enter an amount of cash to flash.
+    </noValidAmount>
+    <flashButton-button disabled={!amount} onClick={flash}>
+      Flash that cash!
+    </flashButton-button>
+  </rightColumn>
   
   $ = {
     flexDirection: 'row',
@@ -74,10 +82,30 @@ view Flasher {
     opacity: .7
   }
   
-  $flash = {
+  $trashTalkSection = {
+    marginBottom: 20
+  }
+  
+  $trashTalkLabel = {
+    color: '#666',
+    fontStyle: 'italic'
+  }
+  
+  $trashTalk = {
+    width: 500,
+    height: 40
+  }
+  
+  $yesValidAmount = {
+    marginBottom: 20
+  }
+  
+  $flashButton = {
     alignSelf: 'center',
     fontSize: 36,
     fontWeight: 'bold',
-    padding: 12
+    padding: 12,
+    borderRadius: 8,
+    color: amount? null : '#999'
   }
 }

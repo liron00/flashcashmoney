@@ -1,6 +1,19 @@
 view Cash {
-  <num>{"$" + ^amount}</num>
-  <dollar-img src="/static/images/1bill.jpg" repeat={^amount} />
+  const getBills = () => {
+    const denomMap = util.getDenominationMap(^amount, CONFIG.denominations)
+    const bills = []
+    for (denom of CONFIG.denominations) {
+      const numBills = denomMap[denom] || 0
+      for (let i=0; i<numBills; i++) {
+        bills.push({
+          denomination: denom
+        })
+      }
+    }
+    return bills
+  }
+    
+  <Bill repeat={getBills()} denomination={_.denomination} />
   
   $ = {
     flexDirection: 'row'

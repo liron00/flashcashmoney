@@ -18,12 +18,17 @@ view MoneyClip {
     }
   }
   
+  on('mount', () => {
+    view.refs.amount.focus()
+  })
+  
   <moneyClip>
     <underline />
     <flashSign-img src="/static/images/flash.png" />
     <cashInput>
       <dollarSign>$</dollarSign>
       <amount-input
+        ref="amount"
         type="text"
         defaultValue={amountStr}
         maxLength="5"
@@ -36,7 +41,7 @@ view MoneyClip {
     height: 265,
     backgroundImage: `url(/static/images/moneyclip.png)`,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 350,
+    backgroundSize: 'contain',
     flexDirection: 'row'
   }
   

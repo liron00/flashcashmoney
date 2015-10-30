@@ -71,7 +71,8 @@ view Main {
   </layout>
   
   $layout = {
-    width: 960,
+    width: 860,
+    padding: 50,
     backgroundColor: 'rgba(0, 0, 0, .8)'
   }
   

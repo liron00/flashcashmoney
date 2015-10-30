@@ -49,10 +49,6 @@ view Flasher {
     })
   }
   
-  <moneyRow>
-    <MoneyClip onChange={onAmountChange} />
-    <Cash if={!!amount} amount={amount} />
-  </moneyRow>
   <trashRow>
     <trash-input type="text"
       disabled={!amount}
@@ -63,14 +59,24 @@ view Flasher {
       Flash that cash!
     </flashButton-button>
   </trashRow>
+  <moneyRow>
+    <MoneyClip onChange={onAmountChange} />
+    <cashWrapper>
+      <Cash if={!!amount} amount={amount} />
+    </cashWrapper>
+  </moneyRow>
   
   $ = {
     marginLeft: 8
   }
   
   $moneyRow = {
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: 'row'
+  }
+  
+  $cashWrapper = {
+    position: 'absolute',
+    marginTop: 10
   }
   
   $MoneyClip = {

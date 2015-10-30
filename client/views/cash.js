@@ -48,14 +48,12 @@ view Cash {
     billStacks = getBillStacks()
   })
   
-  <x>
-    <billStackWrapper repeat={billStacks}>
-      <BillStack
-        num={_.num}
-        denomination={_.denomination}
-        offset={BILL_OFFSET} />
-    </billStackWrapper>
-  </x>
+  <billStackWrapper repeat={billStacks}>
+    <BillStack
+      num={_.num}
+      denomination={_.denomination}
+      offset={BILL_OFFSET} />
+  </billStackWrapper>
   
   $ = {
     position: 'relative',

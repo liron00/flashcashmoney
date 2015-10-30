@@ -45,7 +45,8 @@ view Flash {
   $feedLine = {
     flexDirection: 'row',
     fontSize: 14,
-    fontFamily: 'Copperplate'
+    fontFamily: 'Copperplate',
+    marginBottom: 16
   }
   
   $userLink = {
@@ -68,7 +69,6 @@ view Flash {
   }
   
   $Trash = {
-    marginTop: 16,
     marginBottom: 20
   }
   

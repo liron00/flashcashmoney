@@ -98,7 +98,7 @@ view Flasher {
   </topRow>
   <bottomRow>
     <flashButton-button disabled={flashing} onClick={flash}>
-      {flashing? "Flashing..." : "Flash your cash"}
+      {flashing? "flashing..." : "flash your cash"}
     </flashButton-button>
   </bottomRow>
   

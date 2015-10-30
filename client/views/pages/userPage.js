@@ -18,7 +18,6 @@ view UserPage {
       return
     }
     
-    // TODO: Use actual user slugs
     userSlug = ^params.userSlug
     user = undefined
     periodFlash = undefined
@@ -116,11 +115,12 @@ view UserPage {
         
         <flashesDetail>
           <activeFlashes if={activeUserFlashes.length > 0}>
-            <h1>Active flashes</h1>
             <Flash repeat={activeUserFlashes} flash={_} showUser={false} />
           </activeFlashes>
+          <separator>
+            Flashes stay on the front page for 24 hours.
+          </separator>
           <expiredFlashes if={expiredUserFlashes.length > 0}>
-            <h1>Expired flashes</h1>
             <Flash repeat={expiredUserFlashes} flash={_} showUser={false} />
           </expiredFlashes>
         </flashesDetail>
@@ -136,5 +136,17 @@ view UserPage {
   $userDoesntExist = {
     flexDirection: 'row',
     alignItems: 'baseline'
+  }
+  
+  $Flash = {
+    marginBottom: 100
+  }
+  
+  $separator = {
+    width: '100%',
+    marginBottom: 100,
+    paddingBottom: 2,
+    borderBottom: '1px solid #ccc',
+    color: '#ccc'
   }
 }

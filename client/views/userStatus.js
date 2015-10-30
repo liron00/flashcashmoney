@@ -12,7 +12,7 @@ view UserStatus {
   <loggedIn if={^authUser}>
     <User user={^authUser} />
     <logout-a ref="logout" href="#" onClick={logout} onMouseOver={logoutMouseOver} onMouseOut={logoutMouseOut}>
-      Log out
+      log out
     </logout-a>
   </loggedIn>
   
@@ -28,8 +28,10 @@ view UserStatus {
   
   $logout = {
     marginLeft: 16,
-    fontSize: 14,
+    fontSize: 18,
+    marginTop: 1,
     fontWeight: 'bold',
+    fontFamily: 'Copperplate',
     color: '#666',
     textDecoration: 'none'
   }

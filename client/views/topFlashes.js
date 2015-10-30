@@ -61,4 +61,8 @@ view TopFlashes {
   <flashesLoaded if={sortedPeriodFlashes}>
     <Flash repeat={sortedPeriodFlashes} flash={_} timeless={true} />
   </flashesLoaded>
+  
+  $Flash = {
+    marginBottom: 100
+  }
 }

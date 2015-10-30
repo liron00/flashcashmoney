@@ -1,13 +1,25 @@
 view Trash {
-  <trash>{^trash}</trash>
+  <trash>
+    <quote>“</quote>
+    {^trash}
+  </trash>
   
   $ = {
-    marginTop: 12,
-    marginBottom: 12,
+    paddingTop: 10,
+    paddingBottom: 10,
+    flexDirection: 'row',
     fontSize: 36,
     fontFamily: 'Copperplate',
     color: 'white',
     fontWeight: 'bold',
     fontStyle: 'italic'
+  }
+  
+  $quote = {
+    fontSize: 100,
+    fontFamily: 'Copperplate',
+    position: 'relative',
+    top: 8,
+    left: -12
   }
 }

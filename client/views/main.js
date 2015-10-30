@@ -89,6 +89,9 @@ view Main {
     <HomePage route="/" authUser={user} />
     <AboutPage route="/about" authUser={user} />
     <UserPage route="/:userSlug" authUser={user} />
+    <footer>
+      © 2015 FlashCash.money
+    </footer>
   </layout>
   
   $header = {
@@ -110,7 +113,9 @@ view Main {
     marginBottom: 20
   }
   
-  $.userLink = {
-    fontSize: 24
+  $footer = {
+    fontSize: 10,
+    color: '#666',
+    alignSelf: 'center'
   }
 }

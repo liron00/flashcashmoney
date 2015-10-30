@@ -22,7 +22,7 @@ view Flash {
   </leftColumn>
   <rightColumn>
     <feedLine>
-      <Link to={"/" + user.slug}>
+      <Link class="userLink" to={"/" + user.slug}>
         {user.displayName}
       </Link>
       <flashed>{^timeless? "is flashing" : "flashed"}</flashed>
@@ -34,26 +34,45 @@ view Flash {
   </rightColumn>
 
   $ = {
-    marginBottom: 20,
     flexDirection: 'row'
   }
   
   $leftColumn = {
-    marginRight: 20
+    marginRight: 20,
+    marginTop: 2
   }
   
   $feedLine = {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    fontSize: 14,
+    fontFamily: 'Copperplate'
+  }
+  
+  $userLink = {
+    color: 'green',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontFamily: 'helvetica neue'
   }
   
   $flashed = {
-    marginLeft: 8
+    marginLeft: 8,
+    color: '#666'
   }
   
   $amount = {
     marginLeft: 8,
     marginRight: 8,
     fontFamily: 'Copperplate',
-    fontSize: 18
+    fontSize: 36
+  }
+  
+  $Trash = {
+    marginTop: 16,
+    marginBottom: 20
+  }
+  
+  $Timestamp = {
+    color: '#666'
   }
 }

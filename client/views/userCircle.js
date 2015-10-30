@@ -5,13 +5,8 @@ view UserCircle {
     borderRadius: '50%',
     backgroundImage: `url(${^user.photoUrl})`,
     backgroundSize: 'cover',
-    backgroundPosition: '50%'
-  }
-  
-  if (^glow != false) {
-    Object.assign($, {
-      border: '2px solid white',
-      boxShadow: '0 0 30px white'
-    })
+    backgroundPosition: '50%',
+    border: (^glow != false)? '2px solid white' : null,
+    boxShadow: (^glow != false)? '0 0 30px white' : null
   }
 }

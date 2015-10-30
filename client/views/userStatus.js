@@ -8,15 +8,24 @@ view UserStatus {
       scope: "public_profile,email,user_friends"
     })
 
-  let logout = () =>
+  const logout = () =>
     ref.unauth()
+  
+  const logoutMouseOver = () => {
+    view.refs.logout.style.textDecoration = 'underline'
+  }
+  const logoutMouseOut = () => {
+    view.refs.logout.style.textDecoration = 'none'
+  }
 
   <notLoggedIn if={!^authUser}>
     <loginButton-img src="/static/images/login.png" onClick={login} />
   </notLoggedIn>
   <loggedIn if={^authUser}>
     <User user={^authUser} />
-    <logout-a href="#" onClick={logout}>Log out</logout-a>
+    <logout-a ref="logout" href="#" onClick={logout} onMouseOver={logoutMouseOver} onMouseOut={logoutMouseOut}>
+      Log out
+    </logout-a>
   </loggedIn>
   
   $loginButton = {
@@ -25,10 +34,15 @@ view UserStatus {
   }
   
   $loggedIn = {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
   }
   
   $logout = {
-    marginLeft: 10
+    marginLeft: 16,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#666',
+    textDecoration: 'none'
   }
 }

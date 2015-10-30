@@ -104,7 +104,7 @@ view Flasher {
   } 
   
   $trash = {
-    width: 460,
+    width: 446,
     height: 75,
     marginTop: 8,
     marginBottom: 20,

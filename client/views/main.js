@@ -66,7 +66,7 @@ view Main {
   <layout>
     <NavBar authUser={user} />
     <header>
-      FlashCash.money
+      flashcash.money
     </header>
     <HomePage route="/" authUser={user} />
     <AboutPage route="/about" authUser={user} />
@@ -75,11 +75,11 @@ view Main {
   
   $header = {
     fontFamily: 'Copperplate',
-    fontSize: 72,
+    fontSize: 95,
     fontWeight: 'bold',
     alignSelf: 'center',
     marginTop: 20,
-    marginBottom: 50
+    marginBottom: 40
   }
 
   $layout = {

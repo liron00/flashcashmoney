@@ -49,62 +49,49 @@ view Flasher {
     })
   }
   
-  <MoneyClip onChange={onAmountChange} />
-  <arrow-img if={false} src="/static/images/arrow.png"></arrow-img>
-  <rightColumn>
-    <trashTalkSection>
-      <trash-input type="text"
-        maxLength={140}
-        sync={trash}
-        placeholder="Trash goes here." />
-    </trashTalkSection>
-    <yourCashHere>
-      <yesValidAmount if={!!amount}>
-        <Cash amount={amount} />
-      </yesValidAmount>
-      <noValidAmount if={!amount}>
-          Cash goes here.
-      </noValidAmount>
-    </yourCashHere>
+  <moneyRow>
+    <MoneyClip onChange={onAmountChange} />
+    <Cash if={!!amount} amount={amount} />
+  </moneyRow>
+  <trashRow>
+    <trash-input type="text"
+      disabled={!amount}
+      maxLength={140}
+      sync={trash}
+      placeholder="Trash talk (optional)" />
     <flashButton-button disabled={!amount} onClick={flash}>
       Flash that cash!
     </flashButton-button>
-  </rightColumn>
+  </trashRow>
   
   $ = {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginLeft: 8
   }
   
-  $yourCashHere = {
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: '#999',
-    fontStyle: 'italic',
-    border: '1px dotted #ccc',
-    width: 400,
-    height: 300
+  $moneyRow = {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
   
-  $arrow = {
-    width: 200,
-    marginLeft: 50,
-    marginRight: 50,
-    opacity: .7
+  $MoneyClip = {
+    marginRight: 20
   }
   
-  $trashSection = {
-    marginBottom: 20
-  }
+  $trashRow = {
+    flexDirection: 'row',
+    marginTop: 40,
+    height: 50
+  } 
   
   $trash = {
     width: 500,
-    height: 40
-  }
-  
-  $yesValidAmount = {
-    marginBottom: 20
+    height: 40,
+    color: 'black',
+    fontFamily: 'Copperplate',
+    fontWeight: 'bold',
+    marginRight: 20,
+    opacity: amount? 1 : 0,
+    transition: 'all .2s ease'
   }
   
   $flashButton = {
@@ -112,6 +99,8 @@ view Flasher {
     fontWeight: 'bold',
     padding: 12,
     borderRadius: 8,
-    color: amount? null : '#999'
+    color: amount? null : '#999',
+    opacity: amount? 1 : 0,
+    transition: 'all .2s ease'
   }
 }

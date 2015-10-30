@@ -24,7 +24,7 @@ view MoneyClip {
   
   <moneyClip>
     <underline />
-    <flashSign-img src="/static/images/flash.png" />
+    <flashSign-img if={false} src="/static/images/flash.png" />
     <cashInput>
       <dollarSign>$</dollarSign>
       <amount-input

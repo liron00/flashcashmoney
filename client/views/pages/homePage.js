@@ -7,7 +7,7 @@ view HomePage {
   }
   
   $Flasher = {
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 100
   }
 }

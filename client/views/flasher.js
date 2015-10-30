@@ -49,28 +49,30 @@ view Flasher {
     })
   }
   
-  <trashRow>
-    <trash-input type="text"
-      disabled={!amount}
-      maxLength={140}
-      sync={trash}
-      placeholder="Trash talk (optional)" />
-    <flashButton-button disabled={!amount} onClick={flash}>
-      Flash that cash!
-    </flashButton-button>
-  </trashRow>
-  <moneyRow>
+  <topRow>
     <MoneyClip onChange={onAmountChange} />
-    <cashWrapper>
-      <Cash if={!!amount} amount={amount} />
-    </cashWrapper>
-  </moneyRow>
+    <rightSection>
+      <trash-textarea
+        disabled={!amount}
+        maxLength={140}
+        sync={trash}
+        placeholder="Trash talk" />
+      <cashWrapper>
+        <Cash if={!!amount} amount={amount} />
+      </cashWrapper>
+    </rightSection>
+  </topRow>
+  <bottomRow>
+    <flashButton-button disabled={!amount} onClick={flash}>
+      Flash your cash
+    </flashButton-button>
+  </bottomRow>
   
   $ = {
     marginLeft: 8
   }
   
-  $moneyRow = {
+  $topRow = {
     flexDirection: 'row'
   }
   
@@ -80,33 +82,49 @@ view Flasher {
   }
   
   $MoneyClip = {
+    position: 'relative',
+    left: -8,
     marginRight: 20
   }
   
   $trashRow = {
     flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 40,
     height: 50
   } 
   
   $trash = {
-    width: 500,
-    height: 40,
-    color: 'black',
+    width: 460,
+    height: 75,
+    marginTop: 8,
+    marginBottom: 20,
+    padding: 12,
+    fontSize: 20,
     fontFamily: 'Copperplate',
     fontWeight: 'bold',
-    marginRight: 20,
     opacity: amount? 1 : 0,
-    transition: 'all .2s ease'
+    transition: 'all .2s ease',
+    background: 'black',
+    color: '#c7c7c7',
+    border: '1px solid #999',
+    borderRadius: 8,
+    boxShadow: '0 0 30px white'
   }
   
   $flashButton = {
     fontSize: 36,
     fontWeight: 'bold',
+    fontFamily: 'Copperplate',
     padding: 12,
     borderRadius: 8,
-    color: amount? null : '#999',
+    background: 'linear-gradient(to bottom, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(71,71,71,1) 39%, rgba(44,44,44,1) 50%, rgba(0,0,0,1) 51%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%)',
+    color: amount? '#c00' : 'gray',
     opacity: amount? 1 : 0,
-    transition: 'all .2s ease'
+    border: '2px solid white',
+    borderRadius: 8,
+    boxShadow: '0 0 30px white',
+    transition: 'all .2s ease',
+    marginTop: 40
   }
 }

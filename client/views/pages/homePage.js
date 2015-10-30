@@ -1,10 +1,7 @@
 view HomePage {
-  <UserStatus authUser={^authUser} />
+  <UserStatus if={false} authUser={^authUser} />
   <Flasher authUser={^authUser} />
   <TopFlashes />
-
-  $UserStatus = {
-  }
   
   $Flasher = {
     marginTop: 20,

@@ -1,11 +1,12 @@
 view NavLink {
   activeStyle = {
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold',
     textDecoration: 'none'
   }
   inactiveStyle = {
-    color: 'blue'
+    color: 'green',
+    fontWeight: 'bold'
   }
   
   <Link to={^to}>

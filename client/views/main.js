@@ -65,14 +65,26 @@ view Main {
   
   <layout>
     <NavBar authUser={user} />
+    <header>
+      FlashCash.money
+    </header>
     <HomePage route="/" authUser={user} />
     <AboutPage route="/about" authUser={user} />
     <UserPage route="/:userSlug" authUser={user} />
   </layout>
   
+  $header = {
+    fontFamily: 'Copperplate',
+    fontSize: 72,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 50
+  }
+
   $layout = {
     width: 860,
-    padding: 50,
+    padding: "20px 50px 50px 50px",
     backgroundColor: 'rgba(0, 0, 0, .8)'
   }
   

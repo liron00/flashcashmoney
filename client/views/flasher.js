@@ -15,6 +15,14 @@ view Flasher {
       return
     }
     
+    if (!flashTrash) {
+      view.refs.trash.style.border = '5px solid red'
+      setTimeout(() => {
+        view.refs.trash.style.border = '5px solid rgba(0, 0, 0, 0)'
+      }, 1000)
+      return
+    }
+    
     const stripeHandler = StripeCheckout.configure({
         key: CONFIG.stripeTestPublishableKey,
         name: "YO LET'S MAKE IT RAIN!",
@@ -53,6 +61,7 @@ view Flasher {
     <MoneyClip onChange={onAmountChange} />
     <rightSection>
       <trash-textarea
+        ref="trash"
         disabled={!amount}
         maxLength={140}
         sync={trash}
@@ -107,9 +116,11 @@ view Flasher {
     transition: 'all .2s ease',
     background: 'black',
     color: '#c7c7c7',
-    border: '1px solid #999',
+    border: '5px solid rgba(0, 0, 0, 0)',
     borderRadius: 8,
-    boxShadow: '0 0 30px white'
+    boxShadow: '0 0 30px white',
+    resize: 'none',
+    overflow: 'hidden'
   }
   
   $flashButton = {
@@ -119,7 +130,7 @@ view Flasher {
     padding: 12,
     borderRadius: 8,
     background: 'linear-gradient(to bottom, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(71,71,71,1) 39%, rgba(44,44,44,1) 50%, rgba(0,0,0,1) 51%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%)',
-    color: amount? '#c00' : 'gray',
+    color: '#c00',
     opacity: amount? 1 : 0,
     border: '2px solid white',
     borderRadius: 8,

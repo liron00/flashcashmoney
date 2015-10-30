@@ -13,5 +13,9 @@ view NavLink {
     {^children}
   </Link>
   
+  $ = {
+    fontFamily: 'Copperplate'
+  }
+  
   $Link = Flint.router.isActive(^to)? activeStyle : inactiveStyle
 }

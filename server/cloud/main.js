@@ -26,7 +26,7 @@ Parse.Cloud.define("flash", function(request, response) {
   }
   
   if (trash != null) {
-    if (!(typeof trash == 'string') || trash.length > 140) {
+    if (!(typeof trash == 'string') || trash.length == 0 || trash.length > 140) {
       response.error("Invalid trash talk: " + trash);
       return;
     }

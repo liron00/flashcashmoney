@@ -42,7 +42,8 @@ view MoneyClip {
     backgroundImage: `url(/static/images/moneyclip.png)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    fontFamily: 'Copperplate'
   }
   
   $flashSign = {
@@ -55,15 +56,15 @@ view MoneyClip {
   $underline = {
     position: 'absolute',
     marginTop: 180,
-    marginLeft: 170,
-    width: 110,
+    marginLeft: 172,
+    width: 120,
     borderBottom: '3px solid white'
   }
   
   $cashInput = {
     position: 'relative',
     top: 128,
-    left: 136,
+    left: 130,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 8,
@@ -71,19 +72,18 @@ view MoneyClip {
   }
   
   $dollarSign = {
-    fontSize: 36,
-    fontWeight: 'bold',
+    fontSize: 48,
     color: 'white'
   }
   
   $amount = {
     width: 120,
     height: 70,
-    paddingLeft: 10,
-    fontSize: 36,
+    paddingLeft: 6,
+    fontSize: 48,
+    fontFamily: 'Copperplate',
     background: 'none',
     border: 'none',
-    fontWeight: (amount || !amountStr)? 'bold' : null,
     color: (amount || !amountStr)? 'white' : 'red',
     textDecoration: (amount || !amountStr)? null : 'line-through'
   }

@@ -17,9 +17,19 @@ var stripeApiBaseUrl = "https://" + stripeSecretKey + ":@api.stripe.com/v1/";
 
 Parse.Cloud.define("flash", function(request, response) {
   var amount = request.params.amount;
+  var uid = request.params.uid;
+  var trash = request.params.trash;
+  
   if (amount !== parseInt(amount)) {
     response.error("Invalid amount: " + amount);
     return;
+  }
+  
+  if (trash != null) {
+    if (!(typeof trash == 'string') || trash.length > 140) {
+      response.error("Invalid trash talk: " + trash);
+      return;
+    }
   }
   
   Parse.Cloud.httpRequest({
@@ -45,7 +55,8 @@ Parse.Cloud.define("flash", function(request, response) {
       body: JSON.stringify({
         amount: amount,
         timestamp: {'.sv': 'timestamp'},
-        uid: request.params.uid
+        uid: uid,
+        trash: trash
       })
     });
       

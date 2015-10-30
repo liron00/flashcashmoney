@@ -35,13 +35,18 @@ view TopFlashes {
     periodFlashes = []
     for (let uid in flashesByUid) {
       let periodAmount = 0
+      let trash = null
       flashesByUid[uid].forEach(flash => {
+        if (!trash) {
+          trash = flash.trash
+        }
         periodAmount += flash.amount
       })
       
       periodFlashes.push({
         uid: uid,
         amount: periodAmount,
+        trash: trash,
         timestamp: flashesByUid[uid][0].timestamp
       })
     }

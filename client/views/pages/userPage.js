@@ -71,12 +71,17 @@ view UserPage {
         
         if (activeUserFlashes.length > 0) {
           let amount = 0
+          let trash = null
           for (activeUserFlash of activeUserFlashes) {
             amount += activeUserFlash.amount
+            if (!trash) {
+              trash = activeUserFlash.trash
+            }
           }
           periodFlash = {
             uid: uid,
             timestamp: activeUserFlashes[0].timestamp,
+            trash: trash,
             amount: amount
           }
         } else {
@@ -98,7 +103,7 @@ view UserPage {
       <User user={user} />
       
       <loadingFlashes if={periodFlash === undefined}>
-        Loading flash...
+        Loading flashes...
       </loadingFlashes>
       
       <flashesLoaded if={periodFlash !== undefined}>
@@ -106,7 +111,7 @@ view UserPage {
           Not flashing any cash.
         </noRecentFlash>
         <yesRecentFlash if={periodFlash}>
-          <Flash flash={periodFlash} showUser={false} />
+          <Flash if={false} flash={periodFlash} showUser={false} />
         </yesRecentFlash>
         
         <flashesDetail>

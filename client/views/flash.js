@@ -29,6 +29,7 @@ view Flash {
       <amount>{"$" + ^flash.amount}</amount>
       <Timestamp timestamp={new Date(^flash.timestamp)} />
     </feedLine>
+    <Trash if={^flash.trash} trash={^flash.trash} />
     <Cash amount={^flash.amount} />
   </rightColumn>
 

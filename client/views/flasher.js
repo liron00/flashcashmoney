@@ -1,5 +1,6 @@
 view Flasher {
   let amount = null
+  let trash = ""
   
   const onAmountChange = (e) => {
     amount = e.amount
@@ -7,6 +8,7 @@ view Flasher {
   
   const flash = () => {
     const flashAmount = amount
+    const flashTrash = trash
     
     if (!flashAmount) {
       alert("Invalid amount")
@@ -28,7 +30,8 @@ view Flasher {
             {
               uid: ^authUser.uid,
               amount: flashAmount,
-              stripeToken: token.id
+              stripeToken: token.id,
+              trash: flashTrash
             },
             data => {
               console.log("Flash success!", data)
@@ -50,15 +53,19 @@ view Flasher {
   <arrow-img src="/static/images/arrow.png"></arrow-img>
   <rightColumn>
     <trashTalkSection>
-      <trashTalkLabel>Enter a trash talk.</trashTalkLabel>
-      <trashTalk-input type="text" />
+      <trash-input type="text"
+        maxLength={140}
+        sync={trash}
+        placeholder="Trash goes here." />
     </trashTalkSection>
-    <yesValidAmount if={!!amount}>
-      <Cash amount={amount} />
-    </yesValidAmount>
-    <noValidAmount if={!amount}>
-      Enter an amount of cash to flash.
-    </noValidAmount>
+    <yourCashHere>
+      <yesValidAmount if={!!amount}>
+        <Cash amount={amount} />
+      </yesValidAmount>
+      <noValidAmount if={!amount}>
+          Cash goes here.
+      </noValidAmount>
+    </yourCashHere>
     <flashButton-button disabled={!amount} onClick={flash}>
       Flash that cash!
     </flashButton-button>
@@ -70,9 +77,14 @@ view Flasher {
     marginLeft: 8
   }
   
-  $noValidAmount = {
-    color: '#666',
-    fontStyle: 'italic'
+  $yourCashHere = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#999',
+    fontStyle: 'italic',
+    border: '1px dotted #ccc',
+    width: 400,
+    height: 300
   }
   
   $arrow = {
@@ -82,16 +94,11 @@ view Flasher {
     opacity: .7
   }
   
-  $trashTalkSection = {
+  $trashSection = {
     marginBottom: 20
   }
   
-  $trashTalkLabel = {
-    color: '#666',
-    fontStyle: 'italic'
-  }
-  
-  $trashTalk = {
+  $trash = {
     width: 500,
     height: 40
   }
@@ -101,7 +108,6 @@ view Flasher {
   }
   
   $flashButton = {
-    alignSelf: 'center',
     fontSize: 36,
     fontWeight: 'bold',
     padding: 12,

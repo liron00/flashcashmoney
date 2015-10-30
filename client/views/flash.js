@@ -25,9 +25,9 @@ view Flash {
       <Link to={"/" + user.slug}>
         {user.displayName}
       </Link>
-      <flashed>&nbsp;flashed</flashed>
+      <flashed>{^timeless? "is flashing" : "flashed"}</flashed>
       <amount>{"$" + ^flash.amount}</amount>
-      <Timestamp timestamp={new Date(^flash.timestamp)} />
+      <Timestamp if={!^timeless} timestamp={new Date(^flash.timestamp)} />
     </feedLine>
     <Trash if={^flash.trash} trash={^flash.trash} />
     <Cash amount={^flash.amount} />
@@ -47,6 +47,7 @@ view Flash {
   }
   
   $flashed = {
+    marginLeft: 8
   }
   
   $amount = {

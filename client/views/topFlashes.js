@@ -59,6 +59,6 @@ view TopFlashes {
     Loading flashes...
   </loadingFlashes>
   <flashesLoaded if={sortedPeriodFlashes}>
-    <Flash repeat={sortedPeriodFlashes} flash={_} />
+    <Flash repeat={sortedPeriodFlashes} flash={_} timeless={true} />
   </flashesLoaded>
 }

@@ -6,6 +6,24 @@ export const jQuery = jQ
 const firebaseName = 'flashcashmoney'
 export const ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
 
+export const login = (callback) => {
+  ref.authWithOAuthPopup("facebook", (error, authData) => {
+    if (error) {
+      console.log("Login failed", error)
+    } else {
+      if (callback) {
+        callback(authData)
+      }
+    }
+  }, {
+    scope: "public_profile,email,user_friends"
+  })
+}
+
+export const logout = () => {
+  ref.unauth()
+}
+  
 view Main {
   /*
     user

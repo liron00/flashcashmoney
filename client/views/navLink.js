@@ -1,12 +1,10 @@
 view NavLink {
   activeStyle = {
     color: 'white',
-    fontWeight: 'bold',
     textDecoration: 'none'
   }
   inactiveStyle = {
     color: 'green',
-    fontWeight: 'bold'
   }
   
   <Link to={^to}>
@@ -14,7 +12,9 @@ view NavLink {
   </Link>
   
   $ = {
-    fontFamily: 'Copperplate'
+    fontFamily: 'Copperplate',
+    fontWeight: 'bold',
+    fontSize: 18
   }
   
   $Link = Flint.router.isActive(^to)? activeStyle : inactiveStyle

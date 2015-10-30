@@ -1,6 +1,7 @@
 view MoneyClip {
   let amountStr = ""
   let amount = null
+  let lastKey = ""
   
   const onChange = (e) => {
     amountStr = e.target.value
@@ -22,7 +23,17 @@ view MoneyClip {
     view.refs.amount.focus()
   })
   
-  <moneyClip>
+  on('props', () => {
+    // HACK: The moneyKey prop is so that
+    // the flasher can reset the moneyClip's
+    // value after a successful flash.
+    if (^moneyKey != lastKey) {
+      view.refs.amount.value = ""
+      lastKey = ^moneyKey
+    }
+  })
+  
+  <moneyClip onClick={() => view.refs.amount.focus()}>
     <underline />
     <flashSign-img if={false} src="/static/images/flash.png" />
     <cashInput>
@@ -32,10 +43,15 @@ view MoneyClip {
         type="text"
         defaultValue={amountStr}
         maxLength="5"
-        onChange={onChange} />
+        onChange={onChange}
+        onEnter={^onEnter} />
     </cashInput>
   </moneyClip>
 
+  $ = {
+    cursor: 'text'
+  }
+  
   $moneyClip = {
     width: 350,
     height: 265,

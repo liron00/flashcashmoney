@@ -1,6 +1,6 @@
 view NavBar {
-  <NavLink to="/">Home</NavLink>
-  <NavLink to="/about">About</NavLink>
+  <NavLink to="/">home</NavLink>
+  <NavLink to="/about">about</NavLink>
   <UserStatus authUser={^authUser} />
   
   $ = {

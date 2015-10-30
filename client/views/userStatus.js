@@ -1,16 +1,4 @@
 view UserStatus {
-  let login = () =>
-    ref.authWithOAuthPopup("facebook", (error, authData) => {
-      if (error) {
-        console.log("Login failed", error)
-      }
-    }, {
-      scope: "public_profile,email,user_friends"
-    })
-
-  const logout = () =>
-    ref.unauth()
-  
   const logoutMouseOver = () => {
     view.refs.logout.style.textDecoration = 'underline'
   }
@@ -19,7 +7,7 @@ view UserStatus {
   }
 
   <notLoggedIn if={!^authUser}>
-    <loginButton-img src="/static/images/login.png" onClick={login} />
+    <loginButton-img src="/static/images/login.png" onClick={() => login()} />
   </notLoggedIn>
   <loggedIn if={^authUser}>
     <User user={^authUser} />

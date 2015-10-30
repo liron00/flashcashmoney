@@ -50,7 +50,7 @@ view Flasher {
   }
   
   <MoneyClip onChange={onAmountChange} />
-  <arrow-img src="/static/images/arrow.png"></arrow-img>
+  <arrow-img if={false} src="/static/images/arrow.png"></arrow-img>
   <rightColumn>
     <trashTalkSection>
       <trash-input type="text"

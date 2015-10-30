@@ -2,10 +2,13 @@ body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
-  color: #333;
+  color: white;
   font-size: 14px;
   line-height: 1.6rem;
-  background: #fff;
+  background-color: black;
+  background-image: url(/static/images/bg3.jpg);
+  background-attachment: fixed;
+  background-size: cover;
 
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: 100%;
@@ -25,6 +28,7 @@ html, body, #_flintapp {
 body, #_flintapp {
   flex: 1;
   -webkit-flex: 1;
+  align-items: center;
 }
 
 /* both needed to match <main> or <other> in Main */

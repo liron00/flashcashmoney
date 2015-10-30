@@ -63,10 +63,17 @@ view Main {
     }
   })
   
-  <NavBar authUser={user} />
-  <HomePage route="/" authUser={user} />
-  <AboutPage route="/about" authUser={user} />
-  <UserPage route="/:userSlug" authUser={user} />
+  <layout>
+    <NavBar authUser={user} />
+    <HomePage route="/" authUser={user} />
+    <AboutPage route="/about" authUser={user} />
+    <UserPage route="/:userSlug" authUser={user} />
+  </layout>
+  
+  $layout = {
+    width: 960,
+    backgroundColor: 'rgba(0, 0, 0, .8)'
+  }
   
   $NavBar = {
     marginBottom: 20

@@ -1,15 +1,18 @@
 view NavBar {
-  <navBar>
-    <NavLink to="/">Home</NavLink>
-    <NavLink to="/about">About</NavLink>
-    <NavLink if={^authUser} to={"/" + ^authUser.slug}>You</NavLink>
-  </navBar>
+  <NavLink to="/">Home</NavLink>
+  <NavLink to="/about">About</NavLink>
+  <UserStatus authUser={^authUser} />
   
-  $navBar = {
+  $ = {
+    width: '100%',
     flexDirection: 'row'
   }
   
   $NavLink = {
     marginRight: 8
+  }
+  
+  $UserStatus = {
+    marginLeft: 'auto'
   }
 }

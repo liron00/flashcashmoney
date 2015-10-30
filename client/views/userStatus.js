@@ -11,14 +11,18 @@ view UserStatus {
   let logout = () =>
     ref.unauth()
 
+  <notLoggedIn if={!^authUser}>
+    <loginButton-img src="/static/images/login.png" onClick={login} />
+  </notLoggedIn>
   <loggedIn if={^authUser}>
     <User user={^authUser} />
     <logout-a href="#" onClick={logout}>Log out</logout-a>
   </loggedIn>
-
-  <notLoggedIn if={!^authUser}>
-    <button onClick={login}>Log in with Facebook</button>
-  </notLoggedIn>
+  
+  $loginButton = {
+    cursor: 'pointer',
+    maxHeight: 32
+  }
   
   $loggedIn = {
     flexDirection: 'row'
@@ -26,9 +30,5 @@ view UserStatus {
   
   $logout = {
     marginLeft: 10
-  }
-
-  $userInfo = {
-    fontWeight: 'bold'
   }
 }

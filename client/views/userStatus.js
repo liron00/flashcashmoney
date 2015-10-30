@@ -29,7 +29,6 @@ view UserStatus {
   $logout = {
     marginLeft: 16,
     fontSize: 18,
-    marginTop: 1,
     fontWeight: 'bold',
     fontFamily: 'Copperplate',
     color: '#666',

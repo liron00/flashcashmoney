@@ -6,6 +6,18 @@ export const jQuery = jQ
 const firebaseName = 'flashcashmoney'
 export const ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
 
+const staticRoutes = [
+  '/about'
+]
+export const isStaticRoute = () => {
+  for (let staticRoute of staticRoutes) {
+    if (Flint.router.isActive(staticRoute)) {
+      return true
+    }
+  }
+  return false
+}
+  
 export const login = (callback) => {
   ref.authWithOAuthPopup("facebook", (error, authData) => {
     if (error) {
@@ -43,7 +55,7 @@ view Main {
         displayName: authData.facebook.displayName || null,
         photoUrl: authData.facebook.profileImageURL || null,
       }
-      user = Object.assign({uid: authData.uid}, newUserFields)
+      authUser = Object.assign({uid: authData.uid}, newUserFields)
       
       doUserTransaction = (userSlugIndex) => {
         userRef.transaction(currentUserFields => {
@@ -73,44 +85,27 @@ view Main {
       doUserTransaction(nextUserSlugIndex)
       
       userRef.on('value', data => {
-        Object.assign(user, data.val())
+        Object.assign(authUser, data.val())
       })
       
     } else {
-      user = null
+      authUser = null
     }
   })
   
   <layout>
-    <NavBar authUser={user} />
-    <header>
-      flashcash.money
-    </header>
-    <HomePage route="/" authUser={user} />
-    <AboutPage route="/about" authUser={user} />
-    <UserPage route="/:userSlug" authUser={user} />
+    <HomePage route="/" authUser={authUser} />
+    <AboutPage route="/about" authUser={authUser} />
+    <UserPage route="/:userSlug" authUser={authUser} />
     <footer>
       © 2015 FlashCash.money
     </footer>
   </layout>
   
-  $header = {
-    fontFamily: 'Copperplate',
-    fontSize: 95,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 20,
-    marginBottom: 40
-  }
-
   $layout = {
     width: 860,
     padding: "20px 50px 50px 50px",
     backgroundColor: 'rgba(0, 0, 0, .8)'
-  }
-  
-  $NavBar = {
-    marginBottom: 20
   }
   
   $footer = {

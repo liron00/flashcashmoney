@@ -1,6 +1,9 @@
 view NavBar {
   <NavLink to="/">home</NavLink>
   <NavLink to="/about">about</NavLink>
+  <userPageLink if={^user && !(^authUser && ^authUser.uid == ^user.uid)}>
+    <User user={^user} />
+  </userPageLink>
   <UserStatus authUser={^authUser} />
   
   $ = {
@@ -11,6 +14,10 @@ view NavBar {
   $NavLink = {
     marginRight: 8
   }
+  
+  $User = {
+    marginLeft: 8
+  } 
   
   $UserStatus = {
     marginLeft: 'auto'

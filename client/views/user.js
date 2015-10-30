@@ -13,9 +13,9 @@ view User {
   
   $userSection = {
     flexDirection: 'row',
-    fontSize: 14,
-    fontFamily: 'helvetica neue',
-    fontWeight: 'bold'
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 1
   }
   
   $loaded = {

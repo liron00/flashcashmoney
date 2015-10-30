@@ -22,9 +22,9 @@ view Flash {
   </leftColumn>
   <rightColumn>
     <feedLine>
-      <Link class="userLink" to={"/" + user.slug}>
+      <NavLink class="userLink" to={"/" + user.slug}>
         {user.displayName}
-      </Link>
+      </NavLink>
       <flashed>{^timeless? "is flashing" : "flashed"}</flashed>
       <amount>{"$" + ^flash.amount}</amount>
       <Timestamp if={!^timeless} timestamp={new Date(^flash.timestamp)} />
@@ -47,13 +47,6 @@ view Flash {
     fontSize: 14,
     fontFamily: 'Copperplate',
     marginBottom: 16
-  }
-  
-  $userLink = {
-    color: 'green',
-    fontSize: 24,
-    fontWeight: 'bold',
-    fontFamily: 'helvetica neue'
   }
   
   $flashed = {

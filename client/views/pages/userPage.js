@@ -1,16 +1,4 @@
 view UserPage {
-  const staticRoutes = [
-    '/about'
-  ]
-  const isStaticRoute = () => {
-    for (let staticRoute of staticRoutes) {
-      if (Flint.router.isActive(staticRoute)) {
-        return true
-      }
-    }
-    return false
-  }
-  
   let userSlug, uid, user
   let activeUserFlashes, expiredUserFlashes
   on('props', () => {
@@ -90,8 +78,8 @@ view UserPage {
     })
   })
     
-  
   <userPage if={!isStaticRoute()}>
+    <Header authUser={^authUser} user={user} />
     <userLoadingSection if={user === undefined}>
       Loading <b>{^params.userSlug}</b>...
     </userLoadingSection>
@@ -99,8 +87,6 @@ view UserPage {
       User <b>{^params.userSlug}</b> not found.
     </userDoesntExist>
     <userExists if={user}>
-      <User user={user} />
-      
       <loadingFlashes if={periodFlash === undefined}>
         Loading flashes...
       </loadingFlashes>
@@ -127,6 +113,10 @@ view UserPage {
       </flashesLoaded>
     </userExists>
   </userPage>
+  
+  $Header = {
+    marginBottom: 50
+  }
   
   $userLoadingSection = {
     flexDirection: 'row',

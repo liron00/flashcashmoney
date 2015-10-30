@@ -1,4 +1,5 @@
 view HomePage {
+  <Header authUser={^authUser} />
   <Flasher authUser={^authUser} />
   <TopFlashes />
   

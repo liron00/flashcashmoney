@@ -1,9 +1,15 @@
+const autosize = require('autosize')
+
 view Flasher {
   let moneyKey = ""
   let amount = null
   let trash = ""
   let flashing = false
   let processing = false
+  
+  on('mount', () => {
+    autosize(view.refs.trash)
+  })
   
   const onAmountChange = (e) => {
     amount = e.amount
@@ -95,6 +101,7 @@ view Flasher {
         disabled={!amount}
         maxLength={140}
         sync={trash}
+        rows={1}
         placeholder="trash talk..." />
       <cashWrapper>
         <Cash if={!!amount} amount={amount} />
@@ -135,7 +142,6 @@ view Flasher {
   
   $trash = {
     width: 446,
-    height: 75,
     marginTop: 8,
     marginBottom: 20,
     padding: 12,

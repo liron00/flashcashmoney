@@ -7,6 +7,7 @@
   "main": "",
   "scripts": {},
   "dependencies": {
+    "autosize": "^3.0.13",
     "firebase": "^2.3.1",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",

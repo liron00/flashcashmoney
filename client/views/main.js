@@ -46,14 +46,15 @@ view Main {
   let user
 
   ref.onAuth(authData => {
-    if (authData) {  
+    if (authData) {      
       let userRef = ref.child('users').child(authData.uid)
       let nextUserSlugIndex = 1
       
       const newUserFields = {
         email: authData.facebook.email || null,
-        displayName: authData.facebook.displayName || null,
-        photoUrl: authData.facebook.profileImageURL || null,
+        displayName: authData.facebook.displayName,
+        photoUrl: authData.facebook.profileImageURL,
+        facebookProfileUrl: authData.facebook.cachedUserProfile.link
       }
       authUser = Object.assign({uid: authData.uid}, newUserFields)
       

@@ -42,7 +42,7 @@ view MoneyClip {
         ref="amount"
         type="text"
         defaultValue={amountStr}
-        maxLength="5"
+        maxLength="4"
         onChange={onChange}
         onEnter={view.props.onEnter} />
     </cashInput>

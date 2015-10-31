@@ -8,17 +8,14 @@ view NavLink {
   }
   
   <Link class="myLink" to={view.props.to}>
-    <navLinkWrapper>
-      {view.props.children}
-    </navLinkWrapper>
+    {view.props.children}
   </Link>
   
-  $navLinkWrapper = [
-    {
-      fontFamily: 'Copperplate',
-      fontWeight: 'bold',
-      fontSize: 18
-    },
-    Flint.router.isActive(view.props.to)? activeStyle : inactiveStyle
-  ]
+  $ = {
+    fontFamily: 'Copperplate',
+    fontWeight: 'bold',
+    fontSize: 18
+  }
+  
+  $Link = Flint.router.isActive(view.props.to)? activeStyle : inactiveStyle
 }

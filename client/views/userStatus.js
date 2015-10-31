@@ -6,11 +6,11 @@ view UserStatus {
     view.refs.logout.style.textDecoration = 'none'
   }
 
-  <notLoggedIn if={!^authUser}>
+  <notLoggedIn if={!view.props.authUser}>
     <loginButton-img src="/static/images/login.png" onClick={() => login()} />
   </notLoggedIn>
-  <loggedIn if={^authUser}>
-    <User user={^authUser} />
+  <loggedIn if={view.props.authUser}>
+    <User user={view.props.authUser} />
     <logout-a ref="logout" href="#" onClick={logout} onMouseOver={logoutMouseOver} onMouseOut={logoutMouseOut}>
       log out
     </logout-a>

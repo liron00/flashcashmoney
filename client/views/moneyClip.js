@@ -12,8 +12,8 @@ view MoneyClip {
     )) {
       amount = null
     }
-    if (^onChange) {
-      ^onChange({
+    if (view.props.onChange) {
+      view.props.onChange({
         amount: amount
       })
     }
@@ -27,9 +27,9 @@ view MoneyClip {
     // HACK: The moneyKey prop is so that
     // the flasher can reset the moneyClip's
     // value after a successful flash.
-    if (^moneyKey != lastKey) {
+    if (view.props.moneyKey != lastKey) {
       view.refs.amount.value = ""
-      lastKey = ^moneyKey
+      lastKey = view.props.moneyKey
     }
   })
   
@@ -44,7 +44,7 @@ view MoneyClip {
         defaultValue={amountStr}
         maxLength="5"
         onChange={onChange}
-        onEnter={^onEnter} />
+        onEnter={view.props.onEnter} />
     </cashInput>
   </moneyClip>
 

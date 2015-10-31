@@ -1,6 +1,6 @@
 view HomePage {
-  <Header authUser={^authUser} />
-  <Flasher authUser={^authUser} />
+  <Header authUser={view.props.authUser} />
+  <Flasher authUser={view.props.authUser} />
   <TopFlashes />
   
   $Flasher = {

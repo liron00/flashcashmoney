@@ -1,5 +1,5 @@
 view Header {
-  <NavBar authUser={^authUser} user={^user} />
+  <NavBar authUser={view.props.authUser} user={view.props.user} />
   <h1>
     flashcash.money
   </h1>

@@ -28,7 +28,7 @@ view Flasher {
       return
     }
     
-    if (!^authUser) {
+    if (!view.props.authUser) {
       login(flash)
       return
     }
@@ -40,7 +40,7 @@ view Flasher {
         image: 'TODO',
         locale: 'auto',
         panelLabel: "Flash {{amount}}",
-        email: ^authUser.email,
+        email: view.props.authUser.email,
         bitcoin: true,
         closed: () => {
           if (!processing) {
@@ -52,13 +52,13 @@ view Flasher {
           Parse.Cloud.run(
             "flash",
             {
-              uid: ^authUser.uid,
+              uid: view.props.authUser.uid,
               amount: flashAmount,
               stripeToken: token.id,
               trash: flashTrash
             },
             data => {
-              Flint.router.go("/" + ^authUser.slug)
+              Flint.router.go("/" + view.props.authUser.slug)
               
               // This is what it would take to reset
               // the state of the flasher on the home

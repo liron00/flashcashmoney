@@ -2,9 +2,9 @@ view Link {
   const go = (e) => {
     if (e.button == 0 && !e.metaKey) {
       e.preventDefault()
-      Flint.router.go(^to)
+      Flint.router.go(view.props.to)
     }
   }
   
-  <link-a href={^to} onClick={go}>{^children}</link-a>
+  <link-a href={view.props.to} onClick={go}>{view.props.children}</link-a>
 }

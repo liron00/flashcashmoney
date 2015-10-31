@@ -1,10 +1,10 @@
 view NavBar {
   <NavLink to="/">home</NavLink>
-  <NavLink to="/about">about</NavLink>
-  <userPageLink if={^user && !(^authUser && ^authUser.uid == ^user.uid)}>
-    <User user={^user} />
+  <NavLink to="/faq">faq</NavLink>
+  <userPageLink if={view.props.user && !(view.props.authUser && view.props.authUser.uid == view.props.user.uid)}>
+    <User user={view.props.user} />
   </userPageLink>
-  <UserStatus authUser={^authUser} />
+  <UserStatus authUser={view.props.authUser} />
   
   $ = {
     width: '100%',

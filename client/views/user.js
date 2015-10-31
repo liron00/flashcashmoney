@@ -1,14 +1,14 @@
 view User {  
-  <loaded if={^user.displayName}>
-    <NavLink class="userLink" to={"/" + ^user.slug}>
+  <loaded if={view.props.user.displayName}>
+    <NavLink class="userLink" to={"/" + view.props.user.slug}>
       <userSection>
-        <UserCircle size={32} user={^user} glow={false} />
-        {^user.displayName}
+        <UserCircle size={32} user={view.props.user} glow={false} />
+        {view.props.user.displayName}
       </userSection>
     </NavLink>
   </loaded>
-  <didntLoad if={!^user.displayName}>
-    <uid>Unknown user {JSON.stringify(^user.uid)}</uid>
+  <didntLoad if={!view.props.user.displayName}>
+    <uid>Unknown user {JSON.stringify(view.props.user.uid)}</uid>
   </didntLoad>
   
   $userSection = {

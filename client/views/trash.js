@@ -1,7 +1,7 @@
 view Trash {
   <trash>
     <quote>“</quote>
-    {^trash}
+    {view.props.trash}
   </trash>
   
   $ = {

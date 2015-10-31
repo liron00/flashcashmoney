@@ -4,5 +4,5 @@ view Timestamp {
   const handle = setInterval(view.update, 5000)
   on('unmount', () => {clearInterval(handle)})
   
-  <timestamp>{moment(^timestamp).fromNow()}</timestamp>
+  <timestamp>{moment(view.props.timestamp).fromNow()}</timestamp>
 }

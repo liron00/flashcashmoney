@@ -2,11 +2,11 @@ view UserPage {
   let userSlug, uid, user
   let activeUserFlashes, expiredUserFlashes
   on('props', () => {
-    if (isStaticRoute() || userSlug == ^params.userSlug) {
+    if (isStaticRoute() || userSlug == view.props.params.userSlug) {
       return
     }
     
-    userSlug = ^params.userSlug
+    userSlug = view.props.params.userSlug
     user = undefined
     periodFlash = undefined
     activeUserFlashes = undefined
@@ -79,12 +79,12 @@ view UserPage {
   })
     
   <userPage if={!isStaticRoute()}>
-    <Header authUser={^authUser} user={user} />
+    <Header authUser={view.props.authUser} user={user} />
     <userLoadingSection if={user === undefined}>
-      Loading <b>{^params.userSlug}</b>...
+      Loading <b>{view.props.params.userSlug}</b>...
     </userLoadingSection>
     <userDoesntExist if={user === null}>
-      User <b>{^params.userSlug}</b> not found.
+      User <b>{view.props.params.userSlug}</b> not found.
     </userDoesntExist>
     <userExists if={user}>
       <loadingFlashes if={periodFlash === undefined}>
@@ -113,6 +113,10 @@ view UserPage {
       </flashesLoaded>
     </userExists>
   </userPage>
+  
+  $userPage = {
+    marginBottom: 50
+  }
   
   $Header = {
     marginBottom: 50

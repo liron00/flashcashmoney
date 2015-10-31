@@ -7,7 +7,7 @@ const firebaseName = 'flashcashmoney'
 export const ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
 
 const staticRoutes = [
-  '/about'
+  '/faq'
 ]
 export const isStaticRoute = () => {
   for (let staticRoute of staticRoutes) {
@@ -95,7 +95,7 @@ view Main {
   
   <layout>
     <HomePage route="/" authUser={authUser} />
-    <AboutPage route="/about" authUser={authUser} />
+    <FaqPage route="/faq" authUser={authUser} />
     <UserPage route="/:userSlug" authUser={authUser} />
     <footer>
       © 2015 FlashCash.money

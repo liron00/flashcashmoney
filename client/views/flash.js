@@ -4,10 +4,10 @@ view Flash {
   let user
   
   on('props', () => {
-    if (user && user.uid == ^flash.uid) {
+    if (user && user.uid == view.props.flash.uid) {
       return
     }
-    user = {uid: ^flash.uid}
+    user = {uid: view.props.flash.uid}
     userRef = ref.child('users').child(user.uid)
     
     userRef.on('value', userSnapshot => {
@@ -25,12 +25,12 @@ view Flash {
       <NavLink class="userLink" to={"/" + user.slug}>
         {user.displayName}
       </NavLink>
-      <flashed>{^timeless? "is flashing" : "flashed"}</flashed>
-      <amount>{"$" + ^flash.amount}</amount>
-      <Timestamp if={!^timeless} timestamp={new Date(^flash.timestamp)} />
+      <flashed>{view.props.timeless? "is flashing" : "flashed"}</flashed>
+      <amount>{"$" + view.props.flash.amount}</amount>
+      <Timestamp if={!view.props.timeless} timestamp={new Date(view.props.flash.timestamp)} />
     </feedLine>
-    <Trash if={^flash.trash} trash={^flash.trash} />
-    <Cash amount={^flash.amount} />
+    <Trash if={view.props.flash.trash} trash={view.props.flash.trash} />
+    <Cash amount={view.props.flash.amount} />
   </rightColumn>
 
   $ = {

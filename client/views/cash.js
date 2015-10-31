@@ -6,7 +6,7 @@ view Cash {
   let height
   
   const getBillStacks = () => {
-    const denomMap = util.getDenominationMap(^amount, CONFIG.denominations)
+    const denomMap = util.getDenominationMap(view.props.amount, CONFIG.denominations)
     const billStacks = []
     
     width = 0

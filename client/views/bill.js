@@ -1,5 +1,5 @@
 view Bill {
-  <img src={`/static/images/${^denomination}bill.jpg`} />
+  <img src={`/static/images/${view.props.denomination}bill.jpg`} />
   
   $img = {
     width: CONFIG.billWidth - 2,

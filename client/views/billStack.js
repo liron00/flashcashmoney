@@ -5,18 +5,18 @@ view BillStack {
   let height
   
   on('props', () => {
-    offset = ^offset || 10
+    offset = view.props.offset || 10
     
-    if (^num > 0) {
-      width = CONFIG.billWidth + offset * (^num - 1)
-      height = billHeight + offset * (^num - 1)
+    if (view.props.num > 0) {
+      width = CONFIG.billWidth + offset * (view.props.num - 1)
+      height = billHeight + offset * (view.props.num - 1)
     } else {
       width = null
       height = null
     }
   })
   
-  <Bill repeat={^num} denomination={^denomination} />
+  <Bill repeat={view.props.num} denomination={view.props.denomination} />
 
   $ = {
     position: 'relative',

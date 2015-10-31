@@ -95,7 +95,7 @@ view Flasher {
         disabled={!amount}
         maxLength={140}
         sync={trash}
-        placeholder="trash talk" />
+        placeholder="trash talk..." />
       <cashWrapper>
         <Cash if={!!amount} amount={amount} />
       </cashWrapper>
@@ -142,6 +142,7 @@ view Flasher {
     fontSize: 20,
     fontFamily: 'Copperplate',
     fontWeight: 'bold',
+    fontStyle: 'italic',
     opacity: amount? 1 : 0,
     transition: 'all 0.2s ease',
     background: 'black',

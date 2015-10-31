@@ -90,7 +90,7 @@ view Flasher {
         disabled={!amount}
         maxLength={140}
         sync={trash}
-        placeholder="Trash talk" />
+        placeholder="trash talk" />
       <cashWrapper>
         <Cash if={!!amount} amount={amount} />
       </cashWrapper>

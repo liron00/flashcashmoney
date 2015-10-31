@@ -1,7 +1,16 @@
 view NavBar {
+  let showUserPageLink
+  
+  on('props', () => {
+    showUserPageLink = view.props.user && !(
+      view.props.authUser && view.props.authUser.uid == view.props.user.uid
+    )
+  })
+  
   <NavLink to="/">home</NavLink>
   <NavLink to="/faq">faq</NavLink>
-  <userPageLink if={view.props.user && !(view.props.authUser && view.props.authUser.uid == view.props.user.uid)}>
+  <SocialButtons if={!showUserPageLink} />
+  <userPageLink if={showUserPageLink}>
     <User user={view.props.user} showFbLink={true} />
   </userPageLink>
   <UserStatus authUser={view.props.authUser} />
@@ -13,6 +22,10 @@ view NavBar {
   
   $NavLink = {
     marginRight: 8
+  }
+  
+  $SocialButtons = {
+    marginLeft: 'auto'
   }
   
   $User = {

@@ -120,7 +120,12 @@ view UserPage {
   
   $userLoadingSection = {
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+     color: '#ccc' 
+  }
+  
+  $loadingFlashes = {
+    color: '#ccc'
   }
   
   $userDoesntExist = {

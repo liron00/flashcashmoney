@@ -65,4 +65,8 @@ view TopFlashes {
   $Flash = {
     marginBottom: 100
   }
+  
+  $loadingFlashes = {
+    color: '#ccc'
+  }
 }

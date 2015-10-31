@@ -58,13 +58,18 @@ view Flasher {
               trash: flashTrash
             },
             data => {
-              amount = null
-              moneyKey = "" + Math.random()
-              trash = ""
-              setTimeout(() => {
-                flashing = false
-                processing = false
-              }, 700)
+              Flint.router.go("/" + ^authUser.slug)
+              
+              // This is what it would take to reset
+              // the state of the flasher on the home
+              // page:
+              // amount = null
+              // moneyKey = "" + Math.random()
+              // trash = ""
+              // setTimeout(() => {
+              //   flashing = false
+              //   processing = false
+              // }, 700)
             },
             err => {
               flashing = false

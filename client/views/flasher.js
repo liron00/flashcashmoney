@@ -15,6 +15,13 @@ view Flasher {
     amount = e.amount
   }
   
+  const onTrashKeydown = (e) => {
+    if (e.keyCode == 13) {
+      e.preventDefault()
+      flash()
+    }
+  }
+  
   const flash = () => {
     const flashAmount = amount
     const flashTrash = trash
@@ -101,6 +108,7 @@ view Flasher {
         disabled={!amount}
         maxLength={140}
         sync={trash}
+        onKeyDown={onTrashKeydown}
         rows={1}
         placeholder="trash talk..." />
       <cashWrapper>

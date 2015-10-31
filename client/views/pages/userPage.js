@@ -114,7 +114,12 @@ view UserPage {
     </userExists>
   </userPage>
   
+  $ = {
+    width: '100%',
+  }
+  
   $userPage = {
+    width: '100%',
     marginBottom: 50
   }
   

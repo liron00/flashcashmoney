@@ -67,6 +67,8 @@ view TopFlashes {
   }
   
   $loadingFlashes = {
-    color: '#ccc'
+    color: '#ccc',
+    fontWeight: 'bold',
+    marginBottom: 1000
   }
 }

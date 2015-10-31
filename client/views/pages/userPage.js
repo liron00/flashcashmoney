@@ -134,7 +134,8 @@ view UserPage {
   }
   
   $loadingFlashes = {
-    color: '#ccc'
+    color: '#ccc',
+    fontWeight: 'bold'
   }
   
   $userDoesntExist = {

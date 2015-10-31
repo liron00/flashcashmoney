@@ -17,6 +17,7 @@
     "firebase",
     "moment",
     "lodash",
-    "jquery"
+    "jquery",
+    "autosize"
   ]
 }

@@ -2,7 +2,7 @@ view NavBar {
   <NavLink to="/">home</NavLink>
   <NavLink to="/faq">faq</NavLink>
   <userPageLink if={view.props.user && !(view.props.authUser && view.props.authUser.uid == view.props.user.uid)}>
-    <User user={view.props.user} />
+    <User user={view.props.user} showFbLink={true} />
   </userPageLink>
   <UserStatus authUser={view.props.authUser} />
   

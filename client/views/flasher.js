@@ -50,7 +50,7 @@ view Flasher {
         key: CONFIG.stripeTestPublishableKey,
         name: "YO LET'S MAKE IT RAIN!",
         description: "💸💧",
-        image: 'TODO',
+        image: '/_/static/favicon.png',
         locale: 'auto',
         panelLabel: "Flash {{amount}}",
         email: view.props.authUser.email,

@@ -1,4 +1,4 @@
-export const Parse = {
+export default Parse = {
   Cloud: {
     run: (funcName, kwArgs, successCallback, errorCallback) => {
       jQuery.ajax('https://api.parse.com/1/functions/' + funcName, {

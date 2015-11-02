@@ -13,9 +13,7 @@ view MoneyClip {
       amount = null
     }
     if (view.props.onChange) {
-      view.props.onChange({
-        amount: amount
-      })
+      view.props.onChange({amount})
     }
   }
   

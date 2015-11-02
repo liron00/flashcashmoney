@@ -1,15 +1,21 @@
 import jQ from 'jquery'
 import Firebase from 'firebase'
+import Parse from './lib/parse'
+import util from '../util'
 
-export const jQuery = jQ
+console.log('util is', util)
+
+window.util = util
+
+window.jQuery = jQ
 
 const firebaseName = 'flashcashmoney'
-export const ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
+window.ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)
 
 const staticRoutes = [
   '/faq'
 ]
-export const isStaticRoute = () => {
+window.isStaticRoute = () => {
   for (let staticRoute of staticRoutes) {
     if (Flint.router.isActive(staticRoute)) {
       return true
@@ -18,7 +24,7 @@ export const isStaticRoute = () => {
   return false
 }
   
-export const login = (callback) => {
+window.login = (callback) => {
   ref.authWithOAuthPopup("facebook", (error, authData) => {
     if (error) {
       console.log("Login failed", error)
@@ -32,7 +38,7 @@ export const login = (callback) => {
   })
 }
 
-export const logout = () => {
+window.logout = () => {
   ref.unauth()
 }
   

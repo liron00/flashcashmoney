@@ -1,6 +1,5 @@
-export const util = {}
 
-Object.assign(util, {
+export default {
   getDenominationMap: (amount, denominations) => {
     denominations = denominations.slice()
     denominations.sort((a, b) => b - a)
@@ -19,4 +18,4 @@ Object.assign(util, {
   makeSlug: str => {
     return str.toLowerCase().replace(/[^a-z]+/g, '-')
   }
-})
+}

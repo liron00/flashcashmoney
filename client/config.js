@@ -1,4 +1,4 @@
-export const CONFIG = {
+window.CONFIG = {
   billWidth: 256,
   billAspectRatio: 2.35,
   denominations: [100, 50, 20, 10, 5, 1],

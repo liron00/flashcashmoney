@@ -44,14 +44,20 @@ view FaqPage {
     fontFamily: 'Copperplate',
     marginBottom: 50
   }
+  
+  $Header = {
+    marginBottom: 10
+  }
 
   $question = {
-    fontSize: 24,
-    fontWeight: 'bold'
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: '#999',
+    lineHeight: '100%'
   }
 
   $answer = {
-    fontSize: 16,
-    marginBottom: 20
+    fontSize: 24,
+    marginBottom: 40
   }
 }

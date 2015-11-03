@@ -109,8 +109,7 @@ view Main {
   
   $layout = {
     width: 860,
-    padding: "20px 50px 50px 50px",
-    backgroundColor: 'rgba(0, 0, 0, .8)'
+    padding: "20px 50px 50px 50px"
   }
   
   $footer = {

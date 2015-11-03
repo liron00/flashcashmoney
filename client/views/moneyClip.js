@@ -53,7 +53,7 @@ view MoneyClip {
   $moneyClip = {
     width: 350,
     height: 265,
-    backgroundImage: `url(/static/images/moneyclip.png)`,
+    backgroundImage: `url(/static/images/moneyclipsmall.png)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
     flexDirection: 'row',

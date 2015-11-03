@@ -18,14 +18,11 @@ view Flasher {
   const onTrashKeydown = (e) => {
     if (e.keyCode == 13) {
       e.preventDefault()
-      flash()
+      flash(amount, trash)
     }
   }
   
-  const flash = () => {
-    const flashAmount = amount
-    const flashTrash = trash
-    
+  const flash = (flashAmount, flashTrash) => {
     if (!flashAmount) {
       return
     }
@@ -37,12 +34,15 @@ view Flasher {
       }, 1000)
       setTimeout(() => {
         view.refs.trash.focus()
-      })
+      }, 1)
       return
     }
     
     if (!view.props.authUser) {
-      login(flash)
+      login(() => {
+        alert("gonna flash after login")
+        flash(flashAmount, flashTrash)
+      })
       return
     }
     
@@ -175,7 +175,8 @@ view Flasher {
     padding: "16px 12px",
     borderRadius: 8,
     background: 'linear-gradient(to bottom, #b4ddb4 0%,#005700 25%,#005700 75%,#b4d6a0 100%)',
-    color: flashing? '#999' : '#000',
+    color: flashing? '#999' : '#fff',
+    textShadow: flashing? null : '3px 3px black',
     opacity: amount? 1 : 0,
     border: '2px solid green',
     borderRadius: 8,

@@ -5,8 +5,7 @@ body {
   color: white;
   font-size: 14px;
   line-height: 1.6rem;
-  background-color: black;
-  background-image: url(/static/images/bg3.jpg);
+  background-image: url(/static/images/darkbg.png);
   background-attachment: fixed;
   background-size: cover;
 
@@ -22,14 +21,12 @@ body, body * {
 
 /* get the main to take up full screen by default */
 html, body, #_flintapp {
-  height: 100%;
 }
 
 body, #_flintapp {
   flex: 1;
   -webkit-flex: 1;
   align-items: center;
-  height: auto;
 }
 
 /* both needed to match <main> or <other> in Main */

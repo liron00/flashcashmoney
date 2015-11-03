@@ -1,8 +1,8 @@
 view Header {
   <NavBar authUser={view.props.authUser} user={view.props.user} />
-  <h1>
+  <Link to="/">
     flashcash.money
-  </h1>
+  </Link>
   
   $ = {
     width: '100%'
@@ -13,10 +13,12 @@ view Header {
     marginBottom: 20
   }
   
-  $h1 = {
-    color: 'silver',
+  $Link = {
+    textDecoration: 'none',
+    color: 'white',
+    textShadow: '3px 3px #000',
     fontFamily: 'Copperplate',
-    fontSize: 72,
+    fontSize: 80,
     fontWeight: 'bold',
     alignSelf: 'center',
     marginTop: 20,

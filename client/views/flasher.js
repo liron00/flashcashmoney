@@ -102,7 +102,10 @@ view Flasher {
   }
   
   <topRow>
-    <MoneyClip moneyKey={moneyKey} onChange={onAmountChange} onEnter={flash} />
+    <MoneyClip
+      moneyKey={moneyKey}
+      onChange={onAmountChange}
+      onEnter={() => flash(amount, trash)} />
     <rightSection>
       <trash-textarea
         ref="trash"
@@ -118,7 +121,7 @@ view Flasher {
     </rightSection>
   </topRow>
   <bottomRow>
-    <flashButton-button disabled={flashing} onClick={flash}>
+    <flashButton-button disabled={flashing} onClick={() => flash(amount, trash)}>
       {flashing? "flashing..." : "flash your cash"}
     </flashButton-button>
   </bottomRow>

@@ -1,13 +1,11 @@
-import jQ from 'jquery'
+import jQuery from 'jquery'
 import Firebase from 'firebase'
 import Parse from './lib/parse'
+
 import util from '../util'
 
-console.log('util is', util)
-
 window.util = util
-
-window.jQuery = jQ
+window.jQuery = jQuery
 
 const firebaseName = 'flashcashmoney'
 window.ref = new Firebase(`https://${firebaseName}.firebaseio.com/`)

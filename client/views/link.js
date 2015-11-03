@@ -7,4 +7,8 @@ view Link {
   }
   
   <link-a href={view.props.to} onClick={go}>{view.props.children}</link-a>
+  
+  $ = {
+    textDecoration: 'none'
+  }
 }

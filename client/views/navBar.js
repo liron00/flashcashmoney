@@ -21,7 +21,8 @@ view NavBar {
   }
   
   $NavLink = {
-    marginRight: 8
+    fontSize: 24,
+    marginRight: 20
   }
   
   $SocialButtons = {

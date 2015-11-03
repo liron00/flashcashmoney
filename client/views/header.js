@@ -1,7 +1,10 @@
 view Header {
   <NavBar authUser={view.props.authUser} user={view.props.user} />
   <Link to="/">
-    flashcash.money
+    <headerText>
+      <flashcash>flashcash</flashcash>
+      <dotMoney>.money</dotMoney>
+    </headerText>
   </Link>
   
   $ = {
@@ -15,14 +18,21 @@ view Header {
   
   $Link = {
     textDecoration: 'none',
-    color: 'white',
-    textShadow: '3px 3px #000',
+    color: 'yellow',
     fontFamily: 'Copperplate',
     fontSize: 80,
     fontWeight: 'bold',
     alignSelf: 'center',
     marginTop: 20,
     marginBottom: 40
+  }
+  
+  $headerText = {
+    flexDirection: 'row'
+  }
+  
+  $dotMoney = {
+    color: 'white'
   }
 
 }

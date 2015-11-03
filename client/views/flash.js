@@ -49,6 +49,10 @@ view Flash {
     marginBottom: 16
   }
   
+  $userLink = {
+    fontSize: 24
+  }
+  
   $flashed = {
     marginLeft: 8,
     color: '#666'

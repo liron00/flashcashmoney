@@ -40,8 +40,9 @@ view Flasher {
     
     if (!view.props.authUser) {
       login(() => {
-        alert("gonna flash after login")
-        flash(flashAmount, flashTrash)
+        // Commenting this out because on some browsers,
+        // especially mobile, the popup doesn't come up. 
+        // flash(flashAmount, flashTrash)
       })
       return
     }
@@ -175,7 +176,7 @@ view Flasher {
     padding: "16px 12px",
     borderRadius: 8,
     background: 'linear-gradient(to bottom, #b4ddb4 0%,#005700 25%,#005700 75%,#b4d6a0 100%)',
-    color: flashing? '#999' : 'yellow',
+    color: 'yellow',
     opacity: amount? 1 : 0,
     border: '2px solid green',
     borderRadius: 8,

@@ -3,6 +3,23 @@ import moment from 'moment'
 view Flash {
   let user
   
+  const refreshSocial = () => {
+    if (window.FB) {
+      FB.XFBML.parse()
+    }
+    if (window.twttr) {
+      twttr.widgets.load()
+    }
+  }
+  
+  on('mount', () => {
+    refreshSocial()
+  })
+  
+  on('update', () => {
+    refreshSocial()
+  })
+  
   on('props', () => {
     if (user && user.uid == view.props.flash.uid) {
       return
@@ -12,6 +29,8 @@ view Flash {
     
     userRef.on('value', userSnapshot => {
       Object.assign(user, userSnapshot.val())
+      view.update()
+      refreshSocial()
     })
   })
 
@@ -28,6 +47,16 @@ view Flash {
       <flashed>{view.props.timeless? "is flashing" : "flashed"}</flashed>
       <amount>{"$" + view.props.flash.amount}</amount>
       <Timestamp if={!view.props.timeless} timestamp={new Date(view.props.flash.timestamp)} />
+      <twitter if={!!user.displayName}>
+        <a class="twitter-share-button"
+          href="https://twitter.com/share"
+          data-url={"https://flashcash.money/" + user.slug}
+          data-count="none"
+          data-text={user.displayName + " flashed $" + view.props.flash.amount.toLocaleString() + ", YO!"}
+        >
+          Tweet
+        </a>
+      </twitter>
     </feedLine>
     <Trash if={view.props.flash.trash} trash={view.props.flash.trash} />
     <Cash amount={view.props.flash.amount} />
@@ -35,6 +64,16 @@ view Flash {
 
   $ = {
     flexDirection: 'row'
+  }
+  
+  $twitter = {
+    position: 'relative',
+    marginLeft: 4,
+    marginTop: 2
+  }
+  
+  $a = {
+    color: 'rgba(0, 0, 0, 0)'
   }
   
   $leftColumn = {
@@ -70,6 +109,7 @@ view Flash {
   }
   
   $Timestamp = {
-    color: '#666'
+    color: '#666',
+    marginRight: 8
   }
 }

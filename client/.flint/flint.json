@@ -1,5 +1,3 @@
 {
-  "friendlyUrl": "flashcash.dev",
-  "useFriendly": false,
-  "socketPort": null
+  "port": 6283
 }

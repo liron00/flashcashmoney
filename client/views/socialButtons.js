@@ -10,11 +10,16 @@ view SocialButtons {
   
   <facebook>
     <div class="fb-share-button"
-      data-layout="button_count" />
+      data-layout="button_count"
+      data-href={isStaticRoute()? "https://flashcash.money": null} />
   </facebook>
   <twitter>
     <a class="twitter-share-button"
       href="https://twitter.com/share"
+      data-url={isStaticRoute()? "https://flashcash.money" : null}
+      data-text={isStaticRoute()?
+        "The #1 place to flash your cash":
+        "I got some muthafuckin cash money"}
     >
       Tweet
     </a>

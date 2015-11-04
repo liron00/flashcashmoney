@@ -14,6 +14,9 @@ const staticRoutes = [
   '/faq'
 ]
 window.isStaticRoute = () => {
+  if (Flint.router.isActive("/")) {
+    return true
+  }
   for (let staticRoute of staticRoutes) {
     if (Flint.router.isActive(staticRoute)) {
       return true

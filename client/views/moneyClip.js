@@ -40,7 +40,7 @@ view MoneyClip {
         ref="amount"
         type="text"
         pattern="[0-9]*"
-        inputmode="numeric"
+        inputMode="numeric"
         defaultValue={amountStr}
         maxLength="4"
         onChange={onChange}

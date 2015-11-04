@@ -39,6 +39,8 @@ view MoneyClip {
       <amount-input
         ref="amount"
         type="text"
+        pattern="[0-9]*"
+        inputmode="numeric"
         defaultValue={amountStr}
         maxLength="4"
         onChange={onChange}
@@ -69,8 +71,8 @@ view MoneyClip {
   
   $underline = {
     position: 'absolute',
-    marginTop: 180,
-    marginLeft: 172,
+    marginTop: 186,
+    marginLeft: 173,
     width: 120,
     borderBottom: '3px solid white'
   }

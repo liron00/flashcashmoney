@@ -48,7 +48,7 @@ view Flasher {
     }
     
     const stripeHandler = StripeCheckout.configure({
-        key: CONFIG.stripeTestPublishableKey,
+        key: CONFIG.stripePublishableKey,
         name: "YO LET'S MAKE IT RAIN!",
         description: "💸💧",
         image: '/_/static/favicon.png',

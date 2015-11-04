@@ -5,7 +5,7 @@ var config = {
     stripeTestSecretKey: 'sk_test_W8438ywJgGRb4WcHvu3zTcEc',
     stripeLiveSecretKey: 'sk_live_qEaKjM1OQc9n9c71wK1FMe6c',
     
-    isLive: false
+    isLive: true
 };
 
 var firebaseApiBaseUrl = "https://" + config.firebaseAppName + ".firebaseio.com/";

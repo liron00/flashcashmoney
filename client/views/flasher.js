@@ -74,16 +74,15 @@ view Flasher {
             data => {
               Flint.router.go("/" + view.props.authUser.slug)
               
-              // This is what it would take to reset
-              // the state of the flasher on the home
-              // page:
-              // amount = null
-              // moneyKey = "" + Math.random()
-              // trash = ""
-              // setTimeout(() => {
-              //   flashing = false
-              //   processing = false
-              // }, 700)
+              // Reset the state of the flasher on the
+              // home page (in case user navigates back)
+              amount = null
+              moneyKey = "" + Math.random()
+              trash = ""
+              setTimeout(() => {
+                flashing = false
+                processing = false
+              }, 700)
             },
             err => {
               flashing = false
@@ -109,7 +108,6 @@ view Flasher {
     <rightSection>
       <trash-textarea
         ref="trash"
-        disabled={!amount}
         maxLength={140}
         sync={trash}
         onKeyDown={onTrashKeydown}
@@ -161,7 +159,6 @@ view Flasher {
     fontFamily: 'Copperplate',
     fontWeight: 'bold',
     fontStyle: 'italic',
-    opacity: amount? 1 : 0,
     transition: 'all 0.2s ease',
     background: 'black',
     color: 'white',

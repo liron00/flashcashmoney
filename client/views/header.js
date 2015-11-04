@@ -13,14 +13,15 @@ view Header {
   
   $NavBar = {
     width: '100%',
-    marginBottom: 20
+    marginTop: 20,
+    marginBottom: 40
   }
   
   $Link = {
     textDecoration: 'none',
     color: 'yellow',
     fontFamily: 'Copperplate',
-    fontSize: 80,
+    fontSize: 125,
     fontWeight: 'bold',
     alignSelf: 'center',
     marginTop: 20,
@@ -28,11 +29,13 @@ view Header {
   }
   
   $headerText = {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'baseline'
   }
   
   $dotMoney = {
-    color: 'white'
+    color: 'white',
+    fontSize: 48
   }
 
 }

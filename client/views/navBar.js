@@ -21,7 +21,7 @@ view NavBar {
   }
   
   $NavLink = {
-    fontSize: 24,
+    fontSize: 36,
     marginRight: 20
   }
   

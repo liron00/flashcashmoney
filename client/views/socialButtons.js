@@ -10,12 +10,11 @@ view SocialButtons {
   
   <facebook>
     <div class="fb-share-button"
-      data-layout="button" />
+      data-layout="button_count" />
   </facebook>
   <twitter>
     <a class="twitter-share-button"
       href="https://twitter.com/share"
-      data-count="none"
     >
       Tweet
     </a>

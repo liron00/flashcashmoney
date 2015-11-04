@@ -100,13 +100,13 @@ view UserPage {
         </yesRecentFlash>
         
         <flashesDetail>
-          <activeFlashes if={activeUserFlashes.length > 0}>
+          <activeFlashes if={activeUserFlashes && activeUserFlashes.length > 0}>
             <Flash repeat={activeUserFlashes} flash={_} showUser={false} />
           </activeFlashes>
           <separator>
             Flashes stay on the front page for 24 hours.
           </separator>
-          <expiredFlashes if={expiredUserFlashes.length > 0}>
+          <expiredFlashes if={expiredUserFlashes && expiredUserFlashes.length > 0}>
             <Flash repeat={expiredUserFlashes} flash={_} showUser={false} />
           </expiredFlashes>
         </flashesDetail>

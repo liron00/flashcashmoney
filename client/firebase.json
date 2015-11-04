@@ -1,6 +1,7 @@
 {
   "firebase": "flashcashmoney",
   "public": ".",
+  "rewrites": [{"source": "**", "destination": "/index.html"}],
   "ignore": [
     "firebase.json",
     "**/.*",

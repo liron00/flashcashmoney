@@ -1,7 +1,7 @@
 view UserPage {
   let userSlug, uid, user
   let activeUserFlashes, expiredUserFlashes
-  on('props', () => {
+  on.props(() => {
     if (isStaticRoute() || userSlug == view.props.params.userSlug) {
       return
     }

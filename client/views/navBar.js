@@ -1,7 +1,7 @@
 view NavBar {
   let showUserPageLink
   
-  on('props', () => {
+  on.props(() => {
     showUserPageLink = view.props.user && !(
       view.props.authUser && view.props.authUser.uid == view.props.user.uid
     )

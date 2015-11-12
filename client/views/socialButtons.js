@@ -1,5 +1,5 @@
 view SocialButtons {
-  on('mount', () => {
+  on.mount(() => {
     if (window.FB) {
       FB.XFBML.parse()
     }

@@ -17,11 +17,11 @@ view MoneyClip {
     }
   }
   
-  on('mount', () => {
+  on.mount(() => {
     view.refs.amount.focus()
   })
   
-  on('props', () => {
+  on.props(() => {
     // HACK: The moneyKey prop is so that
     // the flasher can reset the moneyClip's
     // value after a successful flash.

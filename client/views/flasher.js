@@ -7,7 +7,7 @@ view Flasher {
   let flashing = false
   let processing = false
   
-  on('mount', () => {
+  on.mount(() => {
     autosize(view.refs.trash)
   })
   

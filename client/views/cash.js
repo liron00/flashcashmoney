@@ -44,7 +44,7 @@ view Cash {
     
   let billStacks = getBillStacks()
   
-  on('props', () => {
+  on.props(() => {
     billStacks = getBillStacks()
   })
   

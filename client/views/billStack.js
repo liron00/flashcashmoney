@@ -4,7 +4,7 @@ view BillStack {
   let width
   let height
   
-  on('props', () => {
+  on.props(() => {
     offset = view.props.offset || 10
     
     if (view.props.num > 0) {

@@ -12,15 +12,15 @@ view Flash {
     }
   }
   
-  on('mount', () => {
+  on.mount(() => {
     refreshSocial()
   })
   
-  on('update', () => {
+  on.change(() => {
     refreshSocial()
   })
   
-  on('props', () => {
+  on.props(() => {
     if (user && user.uid == view.props.flash.uid) {
       return
     }

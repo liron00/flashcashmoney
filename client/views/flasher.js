@@ -6,27 +6,27 @@ view Flasher {
   let trash = ""
   let flashing = false
   let processing = false
-  
+
   on.mount(() => {
     autosize(view.refs.trash)
   })
-  
+
   const onAmountChange = (e) => {
     amount = e.amount
   }
-  
+
   const onTrashKeydown = (e) => {
     if (e.keyCode == 13) {
       e.preventDefault()
       flash(amount, trash)
     }
   }
-  
+
   const flash = (flashAmount, flashTrash) => {
     if (!flashAmount) {
       return
     }
-    
+
     if (!flashTrash) {
       view.refs.trash.style.border = '5px solid red'
       setTimeout(() => {
@@ -37,16 +37,16 @@ view Flasher {
       }, 1)
       return
     }
-    
+
     if (!view.props.authUser) {
       login(() => {
         // Commenting this out because on some browsers,
-        // especially mobile, the popup doesn't come up. 
+        // especially mobile, the popup doesn't come up.
         // flash(flashAmount, flashTrash)
       })
       return
     }
-    
+
     const stripeHandler = StripeCheckout.configure({
         key: CONFIG.stripePublishableKey,
         name: "YO LET'S MAKE IT RAIN!",
@@ -73,7 +73,7 @@ view Flasher {
             },
             data => {
               Flint.router.go("/" + view.props.authUser.slug)
-              
+
               // Reset the state of the flasher on the
               // home page (in case user navigates back)
               amount = null
@@ -93,13 +93,13 @@ view Flasher {
           );
         }
     })
-    
+
     flashing = true
     stripeHandler.open({
       amount: 100 * flashAmount
     })
   }
-  
+
   <topRow>
     <MoneyClip
       moneyKey={moneyKey}
@@ -123,33 +123,33 @@ view Flasher {
       {flashing? "flashing..." : "flash your cash"}
     </flashButton-button>
   </bottomRow>
-  
+
   $ = {
     marginLeft: 8
   }
-  
+
   $topRow = {
     flexDirection: 'row'
   }
-  
+
   $cashWrapper = {
     position: 'absolute',
     marginTop: 10
   }
-  
+
   $MoneyClip = {
     position: 'relative',
     left: -8,
     marginRight: 20
   }
-  
+
   $trashRow = {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 40,
     height: 50
-  } 
-  
+  }
+
   $trash = {
     width: 446,
     marginTop: 8,
@@ -168,9 +168,9 @@ view Flasher {
     resize: 'none',
     overflow: 'hidden'
   }
-  
+
   $flashButton = {
-    fontSize: 36,
+    fontSize: 18,
     fontWeight: 'bold',
     fontFamily: 'Copperplate',
     padding: "16px 12px",
@@ -179,7 +179,6 @@ view Flasher {
     color: 'yellow',
     opacity: amount? 1 : 0,
     border: '2px solid green',
-    borderRadius: 8,
     boxShadow: '0 0 30px green',
     transition: 'all 0.2s ease',
     marginTop: 40

@@ -6,18 +6,18 @@ view Header {
       <dotMoney>.money</dotMoney>
     </headerText>
   </Link>
-  
+
   $ = {
     width: '100%'
   }
-  
+
   $NavBar = {
     width: '100%',
     marginTop: 20,
     marginBottom: 40
   }
-  
-  $Link = {
+
+  $headerText = {
     textDecoration: 'none',
     color: 'yellow',
     fontFamily: 'Copperplate',
@@ -25,14 +25,11 @@ view Header {
     fontWeight: 'bold',
     alignSelf: 'center',
     marginTop: 20,
-    marginBottom: 40
-  }
-  
-  $headerText = {
+    marginBottom: 40,
     flexDirection: 'row',
     alignItems: 'baseline'
   }
-  
+
   $dotMoney = {
     color: 'white',
     fontSize: 48
